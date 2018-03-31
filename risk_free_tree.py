@@ -130,7 +130,7 @@ class RootTreeNode(LowestRatePriceNode):
         super().__init__(upperNode, lowerNode, parent,fixedRate, terminateValue)
         self.solved = True
 
-class RiskFreeTreeTest:
+class RiskFreeTree:
 
     def __init__(self, zeroCouponRates, volatility, deltaTime, faceValue):
         self.zeroCouponRates = zeroCouponRates
@@ -139,18 +139,34 @@ class RiskFreeTreeTest:
         self.faceValue = faceValue
         self.tree      = None
 
-    def _firstSpot(self):
-        return self.zeroCouponRates[0]
-
-    def _targetPrices(self):
-        #GF Assuming deltatime is 1; to fix
-        return [np.exp(-(i + 1) * self.zeroCouponRates[i]) for i in range(1, len(self.zeroCouponRates))]
-
     def solve(self):
         self.tree    = self.buildTree( initialGuess=1.5 )
         self.tree.fixedRate = self._firstSpot()
         targetPrices = self._targetPrices()
         self._solveTree( self.tree, targetPrices)
+
+    def buildTree(self, initialGuess=1.5):
+        currentNodes = []
+        lastNodes    = []
+        for currentLevel in reversed(range(1,self._treeSize()+1)):
+            lastNodes = currentNodes
+            currentNodes = self._buildLevelNodes(currentLevel, self._treeSize(), lastNodes)
+
+        return currentNodes[0] #First node of the tree
+
+    def ratesByLevel( self ):
+        nodesByLevel = self._nodesByLevels(self.tree)
+        return  [node.rate() for node in nodesByLevel if node.hasChilds()]
+
+    def _treeSize(self):
+        return len(self.zeroCouponRates)+1
+
+    def _firstSpot(self):
+        return self.zeroCouponRates[0]
+
+    def _targetPrices(self):
+        #GF TODO Assuming deltatime is 1; to fix
+        return [np.exp(-(i + 1) * self.zeroCouponRates[i]) for i in range(1, len(self.zeroCouponRates))]
 
     def _solveTree(self, tree, targetPrices ):
         nodes = deque(self._nodesByLevels(tree))
@@ -177,23 +193,8 @@ class RiskFreeTreeTest:
 
         return nodesByLevel
 
-    def ratesByLevel(self, tree):
-        nodesByLevel = self._nodesByLevels(tree)
-        return  [node.rate() for node in nodesByLevel if node.hasChilds()]
-
-    def _treeSize(self):
-        return len(self.zeroCouponRates)+1
-
-    def buildTree(self, initialGuess=1.5):
-        currentNodes = []
-        lastNodes    = []
-        for currentLevel in reversed(range(1,self._treeSize()+1)):
-            lastNodes = currentNodes
-            currentNodes = self._buildLevelNodes(currentLevel, self._treeSize(), lastNodes)
-
-        return currentNodes[0] #First node of the tree
-
     def _buildLevelNodes(self, currentLevel, totalSize, nextLevelNodes=None):
+        #GF TODO Refactor code
         if currentLevel == totalSize:
             newNodes = [TerminateNode(terminateValue= self.faceValue) for i in range(totalSize)]
         elif currentLevel>1:
@@ -220,6 +221,6 @@ def testBackwardsInduction():
     deltaTime = 1.0
     faceValue = 1.0
 
-    riskFreeTree = RiskFreeTreeTest( zeroCouponRates, volatility, deltaTime, faceValue)
+    riskFreeTree = RiskFreeTree( zeroCouponRates, volatility, deltaTime, faceValue)
     riskFreeTree.solve()
-    print( riskFreeTree.ratesByLevel(riskFreeTree.tree) )
+    print( riskFreeTree.ratesByLevel() )
