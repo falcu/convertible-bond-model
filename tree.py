@@ -3,8 +3,8 @@ from scipy.optimize import fsolve
 
 class AbstractNode:
 
-    def __init__(self, upperNode, lowerNode):
-        self.up = upperNode
+    def __init__(self, upperNode=None, lowerNode=None):
+        self.up    = upperNode
         self.low   = lowerNode
 
     def value(self):
@@ -13,12 +13,11 @@ class AbstractNode:
     def rate(self):
         pass
 
-    def isTerminate(self):
-        return False
+    def hasChilds(self):
+        return True
 
     def solve(self, **kwargs):
         pass
-
 
 class TerminateNode(AbstractNode):
     def __init__(self, val):
@@ -30,41 +29,38 @@ class TerminateNode(AbstractNode):
     def rate(self):
         return 0.0
 
-    def isTerminate(self):
-        return True
+    def hasChilds(self):
+        return False
+
+class AbstractRatePriceNode(AbstractNode):
+    def __init__(self,upperNode=None, lowerNode=None ):
+        super().__init__(upperNode, lowerNode)
+
+    def value(self):
+        return 0.5*(self.up.value()*self._discountFactor() + self.low.value()*self._discountFactor())
+
+    def _discountFactor(self):
+        return np.exp(-self.rate())
 
 
-
-class RiskPriceNode(AbstractNode):
-    def __init__(self,upperNode, lowerNode, belowNode, deltaTime, volatility ):
+class RatePriceNode(AbstractRatePriceNode):
+    def __init__(self,upperNode=None, lowerNode=None, belowNode=None, deltaTime=1, volatility=0.1 ):
         super().__init__(upperNode, lowerNode)
         self.below = belowNode
         self.deltaTime = deltaTime
         self.volatility = volatility
 
-    def value(self):
-        return 0.5*(self.up.value()*self._discountFactor() + self.low.value()*self._discountFactor())
-
     def rate(self):
         return self.below.rate()*np.exp(2*self.volatility*np.sqrt(self.deltaTime))
 
-    def _discountFactor(self):
-        return np.exp(-self.rate())
+class LowestRatePriceNode(AbstractRatePriceNode):
 
-class DownRiskPriceNode(AbstractNode):
-
-    def __init__(self, upperNode, lowerNode, fixedRate ):
+    def __init__(self, upperNode=None, lowerNode=None, fixedRate=1.5 ):
         super().__init__(upperNode, lowerNode)
         self.fixedRate = fixedRate
 
-    def value(self):
-        return 0.5*(self.up.value()*self._discountFactor() + self.low.value()*self._discountFactor())
-
     def rate(self):
         return self.fixedRate
-
-    def _discountFactor(self):
-        return np.exp(-self.rate())
 
     def solve(self, **kwargs):
         firstNode = kwargs['first_node']
@@ -83,10 +79,10 @@ class TreeBuilder:
         lastNode2 = TerminateNode(1.0)
         lastNode3 = TerminateNode(1.0)
 
-        downNode = DownRiskPriceNode( lastNode2, lastNode3, 0.2)
-        upperNode = RiskPriceNode( lastNode1, lastNode2, downNode, 1.0, 0.1)
+        downNode = LowestRatePriceNode( lastNode2, lastNode3, 0.2)
+        upperNode = RatePriceNode( lastNode1, lastNode2, downNode, 1.0, 0.1)
 
-        firstNode = DownRiskPriceNode( upperNode, downNode, 0.056969)
+        firstNode = LowestRatePriceNode( upperNode, downNode, 0.056969)
 
         return firstNode
 
@@ -116,14 +112,14 @@ class RiskFreeTree:
 
     def _solveTree(self, firstNode, targetPrice):
         lowNode = firstNode
-        while( not lowNode.low.isTerminate() ):
+        while( lowNode.low.hasChilds() ):
             lowNode = lowNode.low
         lowNode.solve(first_node=firstNode, target_price=targetPrice )
 
 
     def allLowRates(self, node):
         rates = []
-        while(not node.isTerminate()):
+        while( node.hasChilds()):
             rates.append( node.rate() )
             node = node.low
 
@@ -140,12 +136,12 @@ class RiskFreeTree:
                 currentLevelNodes = [TerminateNode(self.faceValue) for i in range(0,currentLevel)]
             else:
                 lowerRate = knownDownRates.pop()
-                lowerNode = DownRiskPriceNode(lastLevelNodes[1], lastLevelNodes[0], lowerRate)
+                lowerNode = LowestRatePriceNode(lastLevelNodes[1], lastLevelNodes[0], lowerRate)
                 otherNodesQuant = currentLevel-1
                 otherNodes = []
                 lastNodeDown = lowerNode
                 for i in range(otherNodesQuant):
-                    otherNode = RiskPriceNode(lastLevelNodes[i+2],lastLevelNodes[i+1], lastNodeDown, self.deltaTime, self.volatility )
+                    otherNode = RatePriceNode(lastLevelNodes[i+2],lastLevelNodes[i+1], lastNodeDown, self.deltaTime, self.volatility )
                     otherNodes.append( otherNode )
                     lastNodeDown = otherNode
                 currentLevelNodes = [lowerNode] + otherNodes
@@ -153,9 +149,69 @@ class RiskFreeTree:
 
         return currentLevelNodes[0]
 
+class RiskFreeTreeTest:
+
+    def __init__(self, zeroCouponRates, volatility, deltaTime, faceValue):
+        self.zeroCouponRates = zeroCouponRates
+        self.volatility = volatility
+        self.deltaTime = deltaTime
+        self.faceValue = faceValue
+        self.tree      = None
+
+    def _firstSpot(self):
+        return self.zeroCouponRates[0]
+
+    def _treeLevels(self, knownDownRates):
+        return 1 + len(knownDownRates)
+
+    def _targetPrices(self):
+        #GF Assuming deltatime is 1; to fix
+        return [np.exp(-(i + 1) * self.zeroCouponRates[i]) for i in range(1, len(self.zeroCouponRates))]
+
+    def solve(self):
+        self.tree    = self.buildTree( initialGuess=1.5 )
+        self.tree.fixedRate = self._firstSpot()
+        targetPrices = self._targetPrices()
+        self._solveTree( self.tree, targetPrices)
+
+    def _solveTree(self, tree, targetPrices ):
+        lowNode      = tree
+        targetPriceIndex = 0
+        while lowNode.low.hasChilds():
+            lowNode = lowNode.low
+            lowNode.solve(first_node=tree, target_price=targetPrices[targetPriceIndex] )
+            targetPriceIndex += 1
+
+    def _treeSize(self):
+        return len(self.zeroCouponRates)
+
+    def buildTree(self, initialGuess=1.5):
+        currentNodes = []
+        lastNodes    = []
+        for currentLevel in reversed(range(1,self._treeSize()+1)):
+            lastNodes = currentNodes
+            currentNodes = self._buildLevelNodes(currentLevel, self._treeSize(), lastNodes)
+
+        return currentNodes[0] #First node of the tree
+
+    def _buildLevelNodes(self, currentLevel, totalSize, nextLevelNodes=None):
+        if currentLevel == totalSize:
+            newNodes = [TerminateNode(self.faceValue) for i in range(totalSize)]
+        else:
+            newNodes = [LowestRatePriceNode(fixedRate=1.5)] + [RatePriceNode(deltaTime=self.deltaTime,volatility=self.volatility) for i in range(currentLevel-1)]
+            for i in reversed(range(len(newNodes))):
+                currentNode = newNodes[i]
+                currentNode.up  = nextLevelNodes[i+1]
+                currentNode.low = nextLevelNodes[i]
+                if i>0:
+                    currentNode.below = newNodes[i-1]
+
+        return newNodes
+
+
 def print_recursive( node ):
     print( 'Price: {}, Rate: {}'.format(node.value(), node.rate()) )
-    if not node.isTerminate():
+    if node.hasChilds():
         print_recursive(node.up)
         print_recursive(node.low)
 
@@ -168,7 +224,7 @@ def print_levels( node ):
     rates = []
     while( len(stack)>0 ):
         currentNode = stack.popleft()
-        if not currentNode.isTerminate():
+        if currentNode.hasChilds():
             stack.append( currentNode.up )
             stack.append( currentNode.low )
             rates.append(currentNode.rate())
@@ -201,3 +257,12 @@ def test2():
     faceValue = 1.0
     return RiskFreeTree( zeroCouponRates, volatility, deltaTime, faceValue)
 
+def testBackwardsInduction():
+    zeroCouponRates = [0.05969, 0.06209, 0.06373, 0.06455, 0.06504, 0.06554]
+    volatility = 0.1
+    deltaTime = 1.0
+    faceValue = 1.0
+
+    riskFreeTree = RiskFreeTreeTest( zeroCouponRates, volatility, deltaTime, faceValue)
+    riskFreeTree.solve()
+    print_levels( riskFreeTree.tree )
