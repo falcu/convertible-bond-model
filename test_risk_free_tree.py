@@ -1,4 +1,3 @@
-import unittest
 import risk_free_tree as underTest
 from test_base import TestBase
 
@@ -15,6 +14,7 @@ class TestRiskFreeTree( TestBase ):
         deltaTime = 1.0
         faceValue = 1.0
         riskFreeTree = underTest.RiskFreeTree(zeroCouponRates, volatility, deltaTime, faceValue)
+
         riskFreeTree.solve()
 
         result = riskFreeTree.ratesByLevel()
@@ -29,6 +29,7 @@ class TestRiskFreeTree( TestBase ):
         deltaTime = 1.0
         faceValue = 1.0
         riskFreeTree = underTest.RiskFreeTree(zeroCouponRates, volatility, deltaTime, faceValue)
+
         riskFreeTree.solve()
 
         result = riskFreeTree.ratesByLevel()

@@ -1,15 +1,16 @@
 import numpy as np
 from scipy.optimize import fsolve
 from collections import deque
+from tree_base import Node, TerminateNode, TerminateNodeRole, IntermediateNodeRole
 
-class Node:
+class RateNode(Node):
 
     def __init__(self, upperNode=None, lowerNode=None, parent=None, terminateValue=1 ):
+        super().__init__()
         self.up             = upperNode
         self.low            = lowerNode
         self.parent         = parent
         self.terminateValue = terminateValue
-        self.solved = False
         self.roleFactory = NodeRoleFactory(self)
 
     def value(self):
@@ -24,14 +25,6 @@ class Node:
     def hasChilds(self):
         return True
 
-    def solve(self, **kwargs):
-        if not self.solved:
-            self._solveImplementation(**kwargs)
-        self.solved = True
-
-    def _solveImplementation(self, **kwargs):
-        pass
-
 class NodeRoleFactory:
 
     def __init__(self,node):
@@ -42,37 +35,12 @@ class NodeRoleFactory:
             return TerminateNodeRole(self.node._valueImplementation())
         elif not self.node.parent:
             return IntermediateNodeRole(self.node)
-        elif self.node.parent and not self.node.parent.solved:
-            return TerminateNode( self.node.terminateValue )
+        elif self.node.parent and not self.node.parent.isSolved():
+            return TerminateNodeRole( self.node.terminateValue )
         else:
             return IntermediateNodeRole(self.node)
 
-
-class AbsractNodeRole:
-
-    def __init__(self, node):
-        self.node = node
-
-    def value(self):
-        pass
-
-class TerminateNodeRole(AbsractNodeRole):
-    def __init__(self, val):
-        self.val = val
-
-    def value(self):
-        return self.val
-
-class IntermediateNodeRole(AbsractNodeRole):
-    def __init__(self, node):
-        super().__init__(node)
-
-    def value(self):
-        return self.node._valueImplementation()
-
-
-
-class AbstractRatePriceNode(Node):
+class AbstractRatePriceNode(RateNode):
     def __init__(self,upperNode=None, lowerNode=None, parent=None,terminateValue=1 ):
         super().__init__(upperNode, lowerNode, parent, terminateValue)
         self.solved = False
@@ -82,20 +50,6 @@ class AbstractRatePriceNode(Node):
 
     def _discountFactor(self):
         return np.exp(-self.rate())
-
-class TerminateNode(Node):
-    def __init__(self, terminateValue=1):
-        super().__init__(terminateValue=terminateValue)
-
-    def _valueImplementation(self):
-        return self.terminateValue
-
-    def rate(self):
-        return 0.0
-
-    def hasChilds(self):
-        return False
-
 
 class RatePriceNode(AbstractRatePriceNode):
     def __init__(self,upperNode=None, lowerNode=None, belowNode=None, parent=None, terminateValue=1, deltaTime=1, volatility=0.1 ):
@@ -140,10 +94,10 @@ class RiskFreeTree:
         self.tree      = None
 
     def solve(self):
-        self.tree    = self.buildTree( initialGuess=1.5 )
+        self.buildTree()
         self.tree.fixedRate = self._firstSpot()
         targetPrices = self._targetPrices()
-        self._solveTree( self.tree, targetPrices)
+        self._solveTree( targetPrices)
 
     def buildTree(self, initialGuess=1.5):
         currentNodes = []
@@ -152,7 +106,7 @@ class RiskFreeTree:
             lastNodes = currentNodes
             currentNodes = self._buildLevelNodes(currentLevel, self._treeSize(), lastNodes)
 
-        return currentNodes[0] #First node of the tree
+        self.tree = currentNodes[0] #First node of the tree
 
     def ratesByLevel( self ):
         nodesByLevel = self._nodesByLevels(self.tree)
@@ -168,15 +122,32 @@ class RiskFreeTree:
         #GF TODO Assuming deltatime is 1; to fix
         return [np.exp(-(i + 1) * self.zeroCouponRates[i]) for i in range(1, len(self.zeroCouponRates))]
 
-    def _solveTree(self, tree, targetPrices ):
-        nodes = deque(self._nodesByLevels(tree))
+    def _solveTree(self, targetPrices ):
+        nodes = deque(self._nodesByLevels(self.tree))
         targetPriceIndex=0
         targetPrices.insert(0,0.0)#dummy
         for currentLevel in range(1, self._treeSize()):
             for nodesInLevel in range(currentLevel):
                 nodeToSolve = nodes.popleft()
-                nodeToSolve.solve(first_node=tree, target_price=targetPrices[targetPriceIndex] )
+                nodeToSolve.solve(first_node=self.tree, target_price=targetPrices[targetPriceIndex] )
             targetPriceIndex += 1
+
+    def nodesOfLevel(self, level):
+        totalNodes    = int(((level+1)/2.0)*level)
+        toIgnoreNodes = totalNodes - level
+        stack = deque()
+        stack.append( self.tree )
+        for i in range(toIgnoreNodes):
+            currentNode = stack.popleft()
+            if not currentNode.low in stack:
+                stack.append(currentNode.low)
+            if not currentNode.up in stack:
+                stack.append(currentNode.up)
+
+        return stack
+
+    def ratesOfLevel(self, level):
+        return [node.rate() for node in self.nodesOfLevel(level)]
 
     def _nodesByLevels(self, tree ):
         stack = deque()

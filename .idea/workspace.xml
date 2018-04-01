@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50be0a39-3c55-4d83-8782-4249770edbb8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_base.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_risk_free_tree.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/default_tree.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_default_tree.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tree_base.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/risk_free_tree.py" afterPath="$PROJECT_DIR$/risk_free_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_risk_free_tree.py" afterPath="$PROJECT_DIR$/test_risk_free_tree.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +24,7 @@
       <file leaf-file-name="tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-643">
+            <state relative-caret-position="149">
               <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -32,13 +34,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="risk_free_tree.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="risk_free_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/risk_free_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="808">
-              <caret line="225" column="37" lean-forward="false" selection-start-line="225" selection-start-column="37" selection-end-line="225" selection-end-column="37" />
+            <state relative-caret-position="179">
+              <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tree_base.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tree_base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1155">
+              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default_tree.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/default_tree.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#82#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_default_tree.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_default_tree.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -47,10 +83,10 @@
       <file leaf-file-name="test_risk_free_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_risk_free_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            <state relative-caret-position="147">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="35" selection-end-column="70" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#0#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,7 +124,6 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>upp</find>
-      <find>_solveTree</find>
       <find>hasLow</find>
       <find>haslow</find>
       <find>isLower</find>
@@ -98,19 +133,27 @@
       <find>RiskPriceNode</find>
       <find>AbstractNode</find>
       <find>deque</find>
-      <find>DownRatePriceNode</find>
-      <find>TerminateNode</find>
       <find>_treeSize()</find>
       <find>RiskFreeTree</find>
       <find>RiskFreeTreeTest</find>
+      <find>Node</find>
+      <find>TerminateNode</find>
+      <find>.solved</find>
+      <find>_solveTree</find>
+      <find>rate</find>
+      <find>solve</find>
+      <find>_nodesByLevels</find>
+      <find>DownRatePriceNode</find>
+      <find>RootDefaultNode</find>
     </findStrings>
     <replaceStrings>
       <replace>hasLower</replace>
       <replace>hasChilds()</replace>
       <replace>RatePriceNode</replace>
-      <replace>LowestRatePriceNode</replace>
       <replace>Node</replace>
       <replace>RiskFreeTree</replace>
+      <replace>LowestRatePriceNode</replace>
+      <replace>TerminateRateNode</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -120,9 +163,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/tree.py" />
-        <option value="$PROJECT_DIR$/risk_free_tree.py" />
         <option value="$PROJECT_DIR$/test_base.py" />
         <option value="$PROJECT_DIR$/test_risk_free_tree.py" />
+        <option value="$PROJECT_DIR$/tree_base.py" />
+        <option value="$PROJECT_DIR$/risk_free_tree.py" />
+        <option value="$PROJECT_DIR$/default_tree.py" />
+        <option value="$PROJECT_DIR$/test_default_tree.py" />
       </list>
     </option>
   </component>
@@ -175,7 +221,37 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree">
+  <component name="RunManager" selected="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample">
+    <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperRealExample" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PythonModels" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_default_tree.TestDefaultTree.test_solve_chambersPaperRealExample&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
+    <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PythonModels" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
     <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -221,16 +297,20 @@
       <option name="_new_target" value="&quot;test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
-    <list size="3">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperRealExample" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" />
       <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperRealExample" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperRealExample" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperRealExample" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperRealExample" />
       </list>
     </recent_temporary>
   </component>
@@ -248,35 +328,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree - 2018.03.31 at 13h 03m 35s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 28m 50s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree_test_solve_chambersPaperRealExample - 2018.03.31 at 12h 57m 54s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperRealExample" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 28m 57s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree_test_solve_chambersPaperRealExample - 2018.03.31 at 12h 58m 17s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperRealExample" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 13s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree_test_solve_chambersPaperSimpleExample - 2018.03.31 at 13h 00m 42s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 21s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree_test_solve_chambersPaperSimpleExample - 2018.03.31 at 13h 01m 08s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 26s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree_test_solve_chambersPaperSimpleExample - 2018.03.31 at 13h 02m 27s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 34s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree_test_solve_chambersPaperSimpleExample - 2018.03.31 at 13h 02m 54s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 40s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree_test_solve_chambersPaperSimpleExample - 2018.03.31 at 13h 03m 01s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 46s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree_test_solve_chambersPaperSimpleExample - 2018.03.31 at 13h 03m 08s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 52s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_risk_free_tree_TestRiskFreeTree_test_solve_chambersPaperSimpleExample - 2018.03.31 at 13h 03m 31s.xml">
-      <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 30m 00s.xml">
+      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -285,14 +365,14 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973147" sideWeight="0.49448818" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32997763" sideWeight="0.5021482" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32997763" sideWeight="0.5085929" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32997763" sideWeight="0.49785176" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.49785176" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28970918" sideWeight="0.48711064" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32997763" sideWeight="0.4914071" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.48925886" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28970918" sideWeight="0.7158969" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.49785176" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35794184" sideWeight="0.8625134" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35794184" sideWeight="0.82599354" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5055118" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -320,17 +400,12 @@
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/risk_free_tree.py</url>
-          <line>171</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/risk_free_tree.py</url>
-          <line>175</line>
-          <option name="timeStamp" value="27" />
+          <url>file://$PROJECT_DIR$/test_default_tree.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="28" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python Console Debugger">
@@ -358,25 +433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-643">
-          <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#4765#6963#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_ipython_console_011.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="459" column="31" lean-forward="true" selection-start-line="459" selection-start-column="31" selection-end-line="459" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -385,22 +441,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_risk_free_tree.py">
+    <entry file="file://$PROJECT_DIR$/tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        <state relative-caret-position="149">
+          <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#4765#6963#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tree_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/risk_free_tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="808">
-          <caret line="225" column="37" lean-forward="false" selection-start-line="225" selection-start-column="37" selection-end-line="225" selection-end-column="37" />
+        <state relative-caret-position="179">
+          <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_ipython_console_011.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="455" column="0" lean-forward="false" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/default_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_risk_free_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="35" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_default_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
