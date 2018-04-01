@@ -1,4 +1,4 @@
-from tree_base import Node, TerminateNodeRole, IntermediateNodeRole, TerminateNode
+from tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
 from risk_free_tree import RiskFreeTree
 import numpy as np
 from scipy.optimize import fsolve
@@ -70,23 +70,6 @@ class RootDefaultNode(DefaultNode):
     def _valueImplementation(self):
         return self._valueDueToNonDefault() + self._valueDueToDefault()
 
-
-class NodeRoleFactory:
-
-    def __init__(self,node):
-        self.node = node
-
-    def buildRole(self):
-        if not self.node.hasChilds():
-            return TerminateNodeRole(self.node._valueImplementation())
-        elif not self.node.parent:
-            return IntermediateNodeRole(self.node)
-        elif self.node.parent and not self.node.parent.isSolved():
-            return TerminateNodeRole( self.node.terminateValue )
-        else:
-            return IntermediateNodeRole(self.node)
-
-
 class LambdaDefaultProb:
     def __init__(self, initialValue=0.5):
         self.solved = False
@@ -106,8 +89,9 @@ class LambdaDefaultProb:
     def isSolved(self):
         return self.solved
 
-class DefaultTree:
+class DefaultTree(BaseBinomialTree):
     def __init__(self, zeroCouponRates, volatility, deltaTime, faceValue, riskyZeroCoupons, recovery):
+        super().__init__()
         self.zeroCouponRates  = zeroCouponRates
         self.volatility       = volatility
         self.deltaTime        = deltaTime
@@ -117,11 +101,8 @@ class DefaultTree:
         self.tree             = None
         self.freeRiskRateTree = RiskFreeTree( zeroCouponRates, volatility, deltaTime, faceValue )
 
-    def solve(self):
+    def _preBuildTree(self):
         self.freeRiskRateTree.solve()
-        self.buildTree()
-        targetPrices = self._targetPrices()
-        self._solveTree( targetPrices )
 
     def defaultProbabilities(self):
         node = self.tree
@@ -132,15 +113,6 @@ class DefaultTree:
 
         return lambdas
 
-    def buildTree(self, initialGuess=0.5):
-        currentNodes = []
-        lastNodes    = []
-        for currentLevel in reversed(range(1,self._treeSize()+1)):
-            lastNodes = currentNodes
-            currentNodes = self._buildLevelNodes(currentLevel, self._treeSize(), lastNodes)
-
-        self.tree = currentNodes[0] #First node of the tree
-
     def _solveTree(self, targetPrices ):
         node = self.tree
         targetPriceIndex = 0
@@ -149,11 +121,11 @@ class DefaultTree:
             node=node.up #It doesn't matter whether I move up or down as there is one LambdaObj per level
             targetPriceIndex+=1
 
-    def _targetPrices(self):
+    def targetValues(self):
         #GF TODO Assuming deltatime is 1; to fix
         return [np.exp(-(i + 1) * self.riskyZeroCoupons[i]) for i in range(0, len(self.riskyZeroCoupons))]
 
-    def _treeSize(self):
+    def treeSize(self):
         return len(self.zeroCouponRates)+1
 
     def _buildLevelNodes(self, currentLevel, totalSize, nextLevelNodes=None):

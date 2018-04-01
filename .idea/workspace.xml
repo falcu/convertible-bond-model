@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50be0a39-3c55-4d83-8782-4249770edbb8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/default_tree.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_default_tree.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tree_base.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/default_tree.py" afterPath="$PROJECT_DIR$/default_tree.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/risk_free_tree.py" afterPath="$PROJECT_DIR$/risk_free_tree.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_risk_free_tree.py" afterPath="$PROJECT_DIR$/test_risk_free_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tree_base.py" afterPath="$PROJECT_DIR$/tree_base.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +34,8 @@
       <file leaf-file-name="risk_free_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/risk_free_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+            <state relative-caret-position="1659">
+              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -49,30 +46,30 @@
       <file leaf-file-name="tree_base.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tree_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1155">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default_tree.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/default_tree.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+            <state relative-caret-position="-399">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding>
-                <element signature="e#0#82#0" expanded="true" />
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_default_tree.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="default_tree.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/default_tree.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3149">
+              <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_default_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_default_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+            <state relative-caret-position="75">
+              <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -133,7 +130,6 @@
       <find>RiskPriceNode</find>
       <find>AbstractNode</find>
       <find>deque</find>
-      <find>_treeSize()</find>
       <find>RiskFreeTree</find>
       <find>RiskFreeTreeTest</find>
       <find>Node</find>
@@ -142,9 +138,14 @@
       <find>_solveTree</find>
       <find>rate</find>
       <find>solve</find>
-      <find>_nodesByLevels</find>
-      <find>DownRatePriceNode</find>
       <find>RootDefaultNode</find>
+      <find>_targetPrices</find>
+      <find>_treeSize()</find>
+      <find>nodesByLevels</find>
+      <find>DownRatePriceNode</find>
+      <find>_treeSize</find>
+      <find>_nodesByLevels</find>
+      <find>treeSize</find>
     </findStrings>
     <replaceStrings>
       <replace>hasLower</replace>
@@ -165,10 +166,10 @@
         <option value="$PROJECT_DIR$/tree.py" />
         <option value="$PROJECT_DIR$/test_base.py" />
         <option value="$PROJECT_DIR$/test_risk_free_tree.py" />
+        <option value="$PROJECT_DIR$/test_default_tree.py" />
+        <option value="$PROJECT_DIR$/default_tree.py" />
         <option value="$PROJECT_DIR$/tree_base.py" />
         <option value="$PROJECT_DIR$/risk_free_tree.py" />
-        <option value="$PROJECT_DIR$/default_tree.py" />
-        <option value="$PROJECT_DIR$/test_default_tree.py" />
       </list>
     </option>
   </component>
@@ -221,7 +222,22 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample">
+  <component name="RunManager" selected="Python tests.Nosetests in PythonModels">
+    <configuration name="Nosetests for test_default_tree.TestDefaultTree" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PythonModels" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_default_tree.TestDefaultTree&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
     <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperRealExample" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -267,7 +283,7 @@
       <option name="_new_target" value="&quot;test_risk_free_tree.TestRiskFreeTree&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
-    <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperRealExample" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests in PythonModels" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -279,38 +295,23 @@
       <module name="PythonModels" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperRealExample&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-    </configuration>
-    <configuration name="Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PythonModels" />
-      <option name="_new_regexPattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperRealExample" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperRealExample" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperRealExample" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in PythonModels" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperRealExample" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperSimpleExample" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree.test_solve_chambersPaperRealExample" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in PythonModels" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperRealExample" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests for test_risk_free_tree.TestRiskFreeTree" />
       </list>
     </recent_temporary>
   </component>
@@ -328,35 +329,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 28m 50s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 47m 43s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 28m 57s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 49m 07s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 13s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 49m 35s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 21s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 50m 18s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 26s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 51m 11s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 34s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 53m 34s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 40s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 53m 45s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 46s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 54m 52s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 29m 52s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 55m 02s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_for_test_default_tree_TestDefaultTree_test_solve_chambersPaperSimpleExample - 2018.04.01 at 00h 30m 00s.xml">
-      <configuration name="Nosetests for test_default_tree.TestDefaultTree.test_solve_chambersPaperSimpleExample" configurationId="tests" />
+    <history-entry file="Nosetests_in_PythonModels - 2018.04.01 at 11h 55m 57s.xml">
+      <configuration name="Nosetests in PythonModels" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -441,50 +442,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#4765#6963#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tree_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/risk_free_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_ipython_console_011.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="455" column="0" lean-forward="false" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/default_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#82#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -500,11 +462,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_default_tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        <state relative-caret-position="75">
+          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#4765#6963#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/risk_free_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1659">
+          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tree_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-399">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/default_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3149">
+          <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
