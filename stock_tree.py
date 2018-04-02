@@ -85,13 +85,14 @@ class TerminateLowerStockNode(TerminateStockNode):
 class StockTree(BaseBinomialTree):
 
     def __init__(self, treeLevels, initialStockPrice, volatility, deltaTime):
+        super().__init__()
         self.treeLevels = treeLevels
         self.initialStockPrice = initialStockPrice
         self.volatility = volatility
         self.deltaTime = deltaTime
 
     def stockPricesByLevel(self):
-        nodes = self.nodesByLevels( self.tree )
+        nodes = self.nodesByLevels( self.root)
         return [aNode.value() for aNode in nodes]
 
     def treeSize(self):

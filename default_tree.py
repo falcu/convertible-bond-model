@@ -101,14 +101,13 @@ class DefaultTree(BaseBinomialTree):
         self.faceValue        = faceValue
         self.riskyZeroCoupons = riskyZeroCoupons
         self.recovery         = recovery
-        self.tree             = None
         self.freeRiskRateTree = RiskFreeTree( zeroCouponRates, volatility, deltaTime, faceValue )
 
     def _preBuildTree(self):
         self.freeRiskRateTree.solve()
 
     def defaultProbabilities(self):
-        node = self.tree
+        node = self.root
         lambdas = []
         while(node.hasChilds()):
             lambdas.append( node.lambdaDefault.lambdaProbability )
@@ -117,10 +116,10 @@ class DefaultTree(BaseBinomialTree):
         return lambdas
 
     def _solveTree(self, targetPrices ):
-        node = self.tree
+        node = self.root
         targetPriceIndex = 0
         while(node.hasChilds()):
-            node.lambdaDefault.solve(first_node=self.tree, target_price=targetPrices[targetPriceIndex] )
+            node.lambdaDefault.solve(first_node=self.root, target_price=targetPrices[targetPriceIndex] )
             node=node.up #It doesn't matter whether I move up or down as there is one LambdaObj per level
             targetPriceIndex+=1
 

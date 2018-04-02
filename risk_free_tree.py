@@ -88,13 +88,12 @@ class RiskFreeTree(BaseBinomialTree):
         self.volatility = volatility
         self.deltaTime = deltaTime
         self.faceValue = faceValue
-        self.tree      = None
 
     def _postBuildTree(self):
-        self.tree.fixedRate = self._firstSpot()
+        self.root.fixedRate = self._firstSpot()
 
     def ratesByLevel( self ):
-        nodesByLevel = self.nodesByLevels(self.tree)
+        nodesByLevel = self.nodesByLevels(self.root)
         return  [node.rate() for node in nodesByLevel if node.hasChilds()]
 
     def treeSize(self):
@@ -108,12 +107,12 @@ class RiskFreeTree(BaseBinomialTree):
         return [np.exp(-(i + 1) * self.zeroCouponRates[i]) for i in range(0, len(self.zeroCouponRates))]
 
     def _solveTree(self, targetValues ):
-        nodes = deque(self.nodesByLevels(self.tree))
+        nodes = deque(self.nodesByLevels(self.root))
         targetValueIndex=0
         for currentLevel in range(1, self.treeSize()):
             for nodesInLevel in range(currentLevel):
                 nodeToSolve = nodes.popleft()
-                nodeToSolve.solve(first_node=self.tree, target_price=targetValues[targetValueIndex] )
+                nodeToSolve.solve(first_node=self.root, target_price=targetValues[targetValueIndex] )
             targetValueIndex += 1
 
     def ratesOfLevel(self, level):

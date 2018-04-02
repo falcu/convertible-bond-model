@@ -74,6 +74,9 @@ class NodeRoleFactory:
             return IntermediateNodeRole(self.node)
 
 class BaseBinomialTree:
+    def __init__(self):
+        self.root = None
+
     def solve(self):
         self._preBuildTree()
         self.buildTree()
@@ -89,7 +92,7 @@ class BaseBinomialTree:
             lastNodes = currentNodes
             currentNodes = self._buildLevelNodes(currentLevel, self.treeSize(), lastNodes)
 
-        self.tree = currentNodes[0] #First node of the tree
+        self.root = currentNodes[0] #First node of the tree
 
     def _postBuildTree(self):
         pass
@@ -110,7 +113,7 @@ class BaseBinomialTree:
         totalNodes    = int(((level+1)/2.0)*level)
         toIgnoreNodes = totalNodes - level
         stack = deque()
-        stack.append( self.tree )
+        stack.append( self.root )
         for i in range(toIgnoreNodes):
             currentNode = stack.popleft()
             if not currentNode.low in stack:
@@ -121,7 +124,7 @@ class BaseBinomialTree:
         return stack
 
     def nodesByLevels(self, nodeToStart=None ):
-        nodeToStart = nodeToStart or self.tree
+        nodeToStart = nodeToStart or self.root
         stack = deque()
         stack.append(nodeToStart)
         nodesByLevel=[]
