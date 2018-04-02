@@ -1,5 +1,5 @@
 import risk_free_tree as underTest
-from test_base import TestBase
+from tests.test_base import TestBase
 
 class TestRiskFreeTree( TestBase ):
 

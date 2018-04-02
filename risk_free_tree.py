@@ -1,7 +1,10 @@
+from collections import deque
+
 import numpy as np
 from scipy.optimize import fsolve
-from collections import deque
+
 from tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
+
 
 class RateNode(Node):
 
@@ -77,6 +80,7 @@ class RootTreeNode(LowestRatePriceNode):
         super().__init__(upperNode, lowerNode, parent,fixedRate, terminateValue)
 
 class RiskFreeTree(BaseBinomialTree):
+    #Ho-Lee log normal model implementation
 
     def __init__(self, zeroCouponRates, volatility, deltaTime, faceValue):
         super().__init__()

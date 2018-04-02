@@ -1,5 +1,6 @@
-from test_base import TestBase
 import default_tree as underTest
+from tests.test_base import TestBase
+
 
 class TestDefaultTree(TestBase):
 

@@ -1,7 +1,8 @@
-from tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
-from risk_free_tree import RiskFreeTree
 import numpy as np
 from scipy.optimize import fsolve
+
+from risk_free_tree import RiskFreeTree
+from tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
 
 
 class DefaultNode(Node):
@@ -90,6 +91,8 @@ class LambdaDefaultProb:
         return self.solved
 
 class DefaultTree(BaseBinomialTree):
+    #Jarrow and Turnbull default risk model
+
     def __init__(self, zeroCouponRates, volatility, deltaTime, faceValue, riskyZeroCoupons, recovery):
         super().__init__()
         self.zeroCouponRates  = zeroCouponRates
