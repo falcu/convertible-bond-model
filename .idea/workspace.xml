@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50be0a39-3c55-4d83-8782-4249770edbb8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/default_tree.py" afterPath="$PROJECT_DIR$/default_tree.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/risk_free_tree.py" afterPath="$PROJECT_DIR$/risk_free_tree.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stock_tree.py" afterPath="$PROJECT_DIR$/stock_tree.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tree_base.py" afterPath="$PROJECT_DIR$/tree_base.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tree.py" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,20 +16,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tree.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tree.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#4765#6963#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="risk_free_tree.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="risk_free_tree.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/risk_free_tree.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="112">
@@ -56,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default_tree.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="default_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/default_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-35">
-              <caret line="121" column="57" lean-forward="false" selection-start-line="121" selection-start-column="57" selection-end-line="121" selection-end-column="57" />
+            <state relative-caret-position="-520">
+              <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -169,12 +153,12 @@
       <find>_targetPrices</find>
       <find>_treeSize()</find>
       <find>nodesByLevels</find>
-      <find>DownRatePriceNode</find>
       <find>_treeSize</find>
       <find>_nodesByLevels</find>
       <find>treeSize</find>
       <find>self.tree</find>
       <find>self.tree</find>
+      <find>DownRatePriceNode</find>
     </findStrings>
     <replaceStrings>
       <replace>hasLower</replace>
@@ -182,9 +166,9 @@
       <replace>RatePriceNode</replace>
       <replace>Node</replace>
       <replace>RiskFreeTree</replace>
-      <replace>LowestRatePriceNode</replace>
       <replace>TerminateRateNode</replace>
       <replace>self.root</replace>
+      <replace>LowestRatePriceNode</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -388,9 +372,6 @@
     <history-entry file="Nosetests_in_test_risk_free_tree_py - 2018.04.02 at 16h 56m 56s.xml">
       <configuration name="Nosetests in test_risk_free_tree.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_stock_tree_py - 2018.04.02 at 16h 50m 55s.xml">
-      <configuration name="Nosetests in test_stock_tree.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_in_test_stock_tree_py - 2018.04.02 at 16h 56m 01s.xml">
       <configuration name="Nosetests in test_stock_tree.py" configurationId="tests" />
     </history-entry>
@@ -404,6 +385,9 @@
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
     <history-entry file="Nosetests_in_tests - 2018.04.02 at 16h 57m 47s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.02 at 16h 58m 58s.xml">
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
   </component>
@@ -436,16 +420,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tree.py</url>
-          <line>174</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tree.py</url>
-          <line>181</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_default_tree.py</url>
           <line>37</line>
@@ -493,17 +467,6 @@
         <state relative-caret-position="171">
           <caret line="455" column="0" lean-forward="false" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#4765#6963#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -569,11 +532,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/default_tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-35">
-          <caret line="121" column="57" lean-forward="false" selection-start-line="121" selection-start-column="57" selection-end-line="121" selection-end-column="57" />
+        <state relative-caret-position="-520">
+          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3216">
+          <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
