@@ -1,4 +1,4 @@
-import risk_free_tree as underTest
+from models import risk_free_tree as underTest
 from tests.test_base import TestBase
 
 class TestRiskFreeTree( TestBase ):

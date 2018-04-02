@@ -1,8 +1,7 @@
 import numpy as np
 from scipy.optimize import fsolve
-
-from risk_free_tree import RiskFreeTree
-from tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
+from models.risk_free_tree import RiskFreeTree
+from models.tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
 
 
 class DefaultNode(Node):

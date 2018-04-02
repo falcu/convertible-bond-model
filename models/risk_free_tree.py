@@ -1,9 +1,7 @@
 from collections import deque
-
 import numpy as np
 from scipy.optimize import fsolve
-
-from tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
+from models.tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
 
 
 class RateNode(Node):

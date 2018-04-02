@@ -1,4 +1,4 @@
-import stock_tree as underTest
+from models import stock_tree as underTest
 from tests.test_base import TestBase
 
 

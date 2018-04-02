@@ -1,4 +1,4 @@
-import default_tree as underTest
+from models import default_tree as underTest
 from tests.test_base import TestBase
 
 

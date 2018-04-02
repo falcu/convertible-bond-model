@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50be0a39-3c55-4d83-8782-4249770edbb8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tree.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_default_tree.py" afterPath="$PROJECT_DIR$/tests/test_default_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_risk_free_tree.py" afterPath="$PROJECT_DIR$/tests/test_risk_free_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_stock_tree.py" afterPath="$PROJECT_DIR$/tests/test_stock_tree.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/default_tree.py" afterPath="$PROJECT_DIR$/models/default_tree.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/risk_free_tree.py" afterPath="$PROJECT_DIR$/models/risk_free_tree.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/stock_tree.py" afterPath="$PROJECT_DIR$/models/stock_tree.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tree_base.py" afterPath="$PROJECT_DIR$/models/tree_base.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,22 +23,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="risk_free_tree.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/risk_free_tree.py">
+      <file leaf-file-name="risk_free_tree.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/risk_free_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="112" column="33" lean-forward="false" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="42">
+              <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tree_base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tree_base.py">
+      <file leaf-file-name="tree_base.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/tree_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2">
+            <state relative-caret-position="2646">
               <caret line="126" column="46" lean-forward="false" selection-start-line="126" selection-start-column="46" selection-end-line="126" selection-end-column="46" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
@@ -41,25 +46,21 @@
         </entry>
       </file>
       <file leaf-file-name="default_tree.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/default_tree.py">
+        <entry file="file://$PROJECT_DIR$/models/default_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-520">
-              <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="21">
+              <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="stock_tree.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stock_tree.py">
+        <entry file="file://$PROJECT_DIR$/models/stock_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="94" column="36" lean-forward="false" selection-start-line="94" selection-start-column="36" selection-end-line="94" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,9 +69,9 @@
         <entry file="file://$PROJECT_DIR$/tests/test_stock_tree.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="294">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
-                <element signature="e#0#30#0" expanded="true" />
+                <marker date="1522699219403" expanded="true" signature="0:79" ph="import ..." />
               </folding>
             </state>
           </provider>
@@ -82,7 +83,7 @@
             <state relative-caret-position="100">
               <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <marker date="1522699219443" expanded="true" signature="0:81" ph="import ..." />
               </folding>
             </state>
           </provider>
@@ -94,7 +95,7 @@
             <state relative-caret-position="441">
               <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding>
-                <element signature="e#0#34#0" expanded="true" />
+                <marker date="1522699219336" expanded="true" signature="0:83" ph="import ..." />
               </folding>
             </state>
           </provider>
@@ -156,9 +157,9 @@
       <find>_treeSize</find>
       <find>_nodesByLevels</find>
       <find>treeSize</find>
-      <find>self.tree</find>
-      <find>self.tree</find>
       <find>DownRatePriceNode</find>
+      <find>self.tree</find>
+      <find>self.tree</find>
     </findStrings>
     <replaceStrings>
       <replace>hasLower</replace>
@@ -167,8 +168,8 @@
       <replace>Node</replace>
       <replace>RiskFreeTree</replace>
       <replace>TerminateRateNode</replace>
-      <replace>self.root</replace>
       <replace>LowestRatePriceNode</replace>
+      <replace>self.root</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -187,6 +188,9 @@
         <option value="$PROJECT_DIR$/stock_tree.py" />
         <option value="$PROJECT_DIR$/risk_free_tree.py" />
         <option value="$PROJECT_DIR$/default_tree.py" />
+        <option value="$PROJECT_DIR$/models/default_tree.py" />
+        <option value="$PROJECT_DIR$/models/risk_free_tree.py" />
+        <option value="$PROJECT_DIR$/models/stock_tree.py" />
       </list>
     </option>
   </component>
@@ -224,6 +228,11 @@
             <path>
               <item name="PythonModels" type="b2602c69:ProjectViewProjectNode" />
               <item name="PythonModels" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PythonModels" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PythonModels" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -233,12 +242,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Guido\PythonModels\tests" />
+      <recent name="D:\Guido\PythonModels\models" />
       <recent name="D:\Guido\PythonModels" />
+      <recent name="D:\Guido\PythonModels\tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -360,9 +370,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_PythonModels - 2018.04.02 at 16h 51m 38s.xml">
-      <configuration name="Nosetests in PythonModels" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_in_test_default_tree_py - 2018.04.02 at 16h 57m 01s.xml">
       <configuration name="Nosetests in test_default_tree.py" configurationId="tests" />
     </history-entry>
@@ -375,12 +382,6 @@
     <history-entry file="Nosetests_in_test_stock_tree_py - 2018.04.02 at 16h 56m 01s.xml">
       <configuration name="Nosetests in test_stock_tree.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.02 at 16h 52m 44s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.02 at 16h 55m 20s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_in_tests - 2018.04.02 at 16h 55m 56s.xml">
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
@@ -388,6 +389,15 @@
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
     <history-entry file="Nosetests_in_tests - 2018.04.02 at 16h 58m 58s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.02 at 17h 00m 20s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.02 at 17h 00m 54s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.02 at 17h 01m 47s.xml">
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
   </component>
@@ -475,7 +485,7 @@
         <state relative-caret-position="441">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <marker date="1522699219336" expanded="true" signature="0:83" ph="import ..." />
           </folding>
         </state>
       </provider>
@@ -485,7 +495,7 @@
         <state relative-caret-position="100">
           <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <marker date="1522699219443" expanded="true" signature="0:81" ph="import ..." />
           </folding>
         </state>
       </provider>
@@ -493,49 +503,9 @@
     <entry file="file://$PROJECT_DIR$/tests/test_stock_tree.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tree_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="126" column="46" lean-forward="false" selection-start-line="126" selection-start-column="46" selection-end-line="126" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stock_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="94" column="36" lean-forward="false" selection-start-line="94" selection-start-column="36" selection-end-line="94" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/risk_free_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="112" column="33" lean-forward="false" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/default_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-520">
-          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1522699219403" expanded="true" signature="0:79" ph="import ..." />
           </folding>
         </state>
       </provider>
@@ -545,6 +515,40 @@
         <state relative-caret-position="3216">
           <caret line="227" column="40" lean-forward="false" selection-start-line="227" selection-start-column="40" selection-end-line="227" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/default_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/risk_free_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/stock_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/tree_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2646">
+          <caret line="126" column="46" lean-forward="false" selection-start-line="126" selection-start-column="46" selection-end-line="126" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

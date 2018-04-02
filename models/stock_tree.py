@@ -1,7 +1,6 @@
 import numpy as np
-
-from tree_base import BaseBinomialTree
-from tree_base import Node
+from models.tree_base import BaseBinomialTree
+from models.tree_base import Node
 
 
 class RootStockNode(Node):
