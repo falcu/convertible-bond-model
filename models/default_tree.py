@@ -92,7 +92,7 @@ class LambdaDefaultProb:
 class DefaultTree(BaseBinomialTree):
     #Jarrow and Turnbull default risk model
 
-    def __init__(self, zeroCouponRates, volatility, deltaTime, faceValue, riskyZeroCoupons, recovery):
+    def __init__(self, zeroCouponRates, volatility, deltaTime, faceValue, riskyZeroCoupons, recovery, freeRiskRateTree=None):
         super().__init__()
         self.zeroCouponRates  = zeroCouponRates
         self.volatility       = volatility
@@ -100,7 +100,7 @@ class DefaultTree(BaseBinomialTree):
         self.faceValue        = faceValue
         self.riskyZeroCoupons = riskyZeroCoupons
         self.recovery         = recovery
-        self.freeRiskRateTree = RiskFreeTree( zeroCouponRates, volatility, deltaTime, faceValue )
+        self.freeRiskRateTree = RiskFreeTree( zeroCouponRates, volatility, deltaTime, faceValue ) or freeRiskRateTree
 
     def _preBuildTree(self):
         self.freeRiskRateTree.solve()
@@ -114,6 +114,9 @@ class DefaultTree(BaseBinomialTree):
 
         return lambdas
 
+    def defaultProbabilityOfLevel(self, level):
+        return self.defaultProbabilities()[level-1]
+
     def _solveTree(self, targetPrices ):
         node = self.root
         targetPriceIndex = 0
@@ -124,7 +127,7 @@ class DefaultTree(BaseBinomialTree):
 
     def targetValues(self):
         #GF TODO Assuming deltatime is 1; to fix
-        return [np.exp(-(i + 1) * self.riskyZeroCoupons[i]) for i in range(0, len(self.riskyZeroCoupons))]
+        return [np.exp(-(i + 1) * self.riskyZeroCoupons[i])*self.faceValue for i in range(0, len(self.riskyZeroCoupons))]
 
     def treeSize(self):
         return len(self.zeroCouponRates)+1

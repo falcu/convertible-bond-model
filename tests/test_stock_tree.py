@@ -12,3 +12,12 @@ class TestStockTree(TestBase):
         stockTree.solve()
         actualStockPrices = stockTree.stockPricesByLevel()
         self.assertAlmostEqualList( expectedStockPrices, actualStockPrices)
+
+    def test_stockPricesOfLevel_chambersPaper_stockTreeIsBuiltCorrectly(self):
+        expectedStockPrices = [1.7958, 3.6441, 7.3948, 15.006, 30.4511, 61.7932, 125.3947]
+        stockTree = underTest.StockTree(7, 15.006, 0.353836, 1)
+
+        stockTree.solve()
+        actualStockPrices = stockTree.stockPricesOfLevel(7)
+
+        self.assertAlmostEqualList( expectedStockPrices, actualStockPrices)

@@ -73,20 +73,28 @@ class NodeRoleFactory:
         else:
             return IntermediateNodeRole(self.node)
 
-class BaseBinomialTree:
+
+class BaseTree(ABC):
     def __init__(self):
         self.root = None
+        self._isSolved = False
 
     def solve(self):
-        self._preBuildTree()
-        self.buildTree()
-        self._postBuildTree()
-        self._solveTree( self.targetValues() )
+        if not self.isSolved():
+            self.buildTree()
+            return self._solveTree( self.targetValues() )
+
+    def isSolved(self):
+        return self._isSolved
 
     def _preBuildTree(self):
         pass
 
-    def buildTree(self, initialGuess=1.5):
+    def _postBuildTree(self):
+        pass
+
+    def buildTree(self):
+        self._preBuildTree()
         currentNodes = []
         for currentLevel in reversed(range(1,self.treeSize()+1)):
             lastNodes = currentNodes
@@ -94,19 +102,22 @@ class BaseBinomialTree:
 
         self.root = currentNodes[0] #First node of the tree
 
-    def _postBuildTree(self):
-        pass
+        self._postBuildTree()
 
-    def _buildLevelNodes(self, currentLevel, totalSize, nextLevelNodes=None):
-        pass
-
+    @abstractmethod
     def _solveTree(self, targetValues ):
         pass
 
-    def treeSize(self):
-        pass
-
+    @abstractmethod
     def targetValues(self):
+            pass
+
+class BaseBinomialTree(BaseTree):
+    def __init__(self):
+        super().__init__()
+
+    @abstractmethod
+    def treeSize(self):
         pass
 
     def nodesOfLevel(self, level):

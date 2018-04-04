@@ -94,6 +94,15 @@ class StockTree(BaseBinomialTree):
         nodes = self.nodesByLevels( self.root)
         return [aNode.value() for aNode in nodes]
 
+    def stockPricesOfLevel(self, level):
+        return [aNode.value() for aNode in self.nodesOfLevel(level)]
+
+    def _solveTree(self, targetValues ):
+        pass
+
+    def targetValues(self):
+        pass
+
     def treeSize(self):
         return self.treeLevels
 

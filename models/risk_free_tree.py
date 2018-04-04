@@ -102,7 +102,7 @@ class RiskFreeTree(BaseBinomialTree):
 
     def targetValues(self):
         #GF TODO Assuming deltatime is 1; to fix
-        return [np.exp(-(i + 1) * self.zeroCouponRates[i]) for i in range(0, len(self.zeroCouponRates))]
+        return [np.exp(-(i + 1) * self.zeroCouponRates[i])*self.faceValue for i in range(0, len(self.zeroCouponRates))]
 
     def _solveTree(self, targetValues ):
         nodes = deque(self.nodesByLevels(self.root))

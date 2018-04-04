@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50be0a39-3c55-4d83-8782-4249770edbb8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/convertible_bond_tree.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/default_tree.py" afterPath="$PROJECT_DIR$/models/default_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/risk_free_tree.py" afterPath="$PROJECT_DIR$/models/risk_free_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/stock_tree.py" afterPath="$PROJECT_DIR$/models/stock_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/tree_base.py" afterPath="$PROJECT_DIR$/models/tree_base.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_default_tree.py" afterPath="$PROJECT_DIR$/tests/test_default_tree.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_risk_free_tree.py" afterPath="$PROJECT_DIR$/tests/test_risk_free_tree.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_stock_tree.py" afterPath="$PROJECT_DIR$/tests/test_stock_tree.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/default_tree.py" afterPath="$PROJECT_DIR$/models/default_tree.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/risk_free_tree.py" afterPath="$PROJECT_DIR$/models/risk_free_tree.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/stock_tree.py" afterPath="$PROJECT_DIR$/models/stock_tree.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tree_base.py" afterPath="$PROJECT_DIR$/models/tree_base.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,18 +29,8 @@
       <file leaf-file-name="risk_free_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/risk_free_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tree_base.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/models/tree_base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2646">
-              <caret line="126" column="46" lean-forward="false" selection-start-line="126" selection-start-column="46" selection-end-line="126" selection-end-column="46" />
+            <state relative-caret-position="208">
+              <caret line="104" column="73" lean-forward="false" selection-start-line="104" selection-start-column="73" selection-end-line="104" selection-end-column="73" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -45,12 +38,48 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="convertible_bond_tree.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="192" column="15" lean-forward="false" selection-start-line="192" selection-start-column="15" selection-end-line="192" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_convertible_bond_tree.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/test_convertible_bond_tree.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="interactiveshell.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/IPython/core/interactiveshell.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="2880" column="0" lean-forward="false" selection-start-line="2880" selection-start-column="0" selection-end-line="2880" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="default_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/default_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="208">
+              <caret line="129" column="74" lean-forward="false" selection-start-line="129" selection-start-column="74" selection-end-line="129" selection-end-column="74" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -58,9 +87,11 @@
       <file leaf-file-name="stock_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/stock_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
-              <folding />
+            <state relative-caret-position="721">
+              <caret line="132" column="37" lean-forward="true" selection-start-line="132" selection-start-column="37" selection-end-line="132" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,10 +99,10 @@
       <file leaf-file-name="test_stock_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_stock_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="241">
+              <caret line="15" column="59" lean-forward="true" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
               <folding>
-                <marker date="1522699219403" expanded="true" signature="0:79" ph="import ..." />
+                <element signature="e#0#42#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,10 +111,10 @@
       <file leaf-file-name="test_default_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_default_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+            <state relative-caret-position="360">
+              <caret line="61" column="8" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="62" selection-end-column="23" />
               <folding>
-                <marker date="1522699219443" expanded="true" signature="0:81" ph="import ..." />
+                <element signature="e#0#44#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,31 +123,23 @@
       <file leaf-file-name="test_risk_free_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_risk_free_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="336">
+              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="61" selection-end-column="23" />
               <folding>
-                <marker date="1522699219336" expanded="true" signature="0:83" ph="import ..." />
+                <element signature="e#0#46#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_base.py">
+      <file leaf-file-name="tree_base.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/tree_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="minpack.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/scipy/optimize/minpack.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="212">
+              <caret line="84" column="19" lean-forward="false" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,25 +155,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>upp</find>
-      <find>hasLow</find>
-      <find>haslow</find>
-      <find>isLower</find>
-      <find>hasLowe</find>
-      <find>isTerminate</find>
-      <find>hasChilds</find>
-      <find>RiskPriceNode</find>
-      <find>AbstractNode</find>
-      <find>deque</find>
-      <find>RiskFreeTree</find>
-      <find>RiskFreeTreeTest</find>
-      <find>Node</find>
-      <find>TerminateNode</find>
-      <find>.solved</find>
-      <find>_solveTree</find>
-      <find>rate</find>
-      <find>solve</find>
-      <find>RootDefaultNode</find>
       <find>_targetPrices</find>
       <find>_treeSize()</find>
       <find>nodesByLevels</find>
@@ -158,8 +162,29 @@
       <find>_nodesByLevels</find>
       <find>treeSize</find>
       <find>DownRatePriceNode</find>
+      <find>isSolved</find>
+      <find>ConvertibleBondBaseNonDefaultNode</find>
+      <find>callSchedule</find>
+      <find>lambdaDefault</find>
       <find>self.tree</find>
       <find>self.tree</find>
+      <find>BaseNonTerminateNonDefaultNode</find>
+      <find>_buildTerminalNodes</find>
+      <find>hasChilds</find>
+      <find>childs</find>
+      <find>_buildRootNode</find>
+      <find>pathsProbabilities</find>
+      <find>self.freeRiskRateTree</find>
+      <find>_composeFactor</find>
+      <find>node.children</find>
+      <find>.children</find>
+      <find>addFeaturdef e</find>
+      <find>.recovery</find>
+      <find>terminateValue=</find>
+      <find>def _pProbability</find>
+      <find>def target</find>
+      <find>self.root.value()</find>
+      <find>def tar</find>
     </findStrings>
     <replaceStrings>
       <replace>hasLower</replace>
@@ -169,6 +194,13 @@
       <replace>RiskFreeTree</replace>
       <replace>TerminateRateNode</replace>
       <replace>LowestRatePriceNode</replace>
+      <replace>BaseNode</replace>
+      <replace>BaseNonDefaultNode</replace>
+      <replace>TerminateNonDefaultNode</replace>
+      <replace>BaseTerminateNonDefaultNode</replace>
+      <replace>DefaultNode</replace>
+      <replace>defaultProbability</replace>
+      <replace>children</replace>
       <replace>self.root</replace>
     </replaceStrings>
   </component>
@@ -183,22 +215,26 @@
         <option value="$PROJECT_DIR$/test_risk_free_tree.py" />
         <option value="$PROJECT_DIR$/test_default_tree.py" />
         <option value="$PROJECT_DIR$/test_stock_tree.py" />
-        <option value="$PROJECT_DIR$/tests/test_stock_tree.py" />
         <option value="$PROJECT_DIR$/tree_base.py" />
         <option value="$PROJECT_DIR$/stock_tree.py" />
         <option value="$PROJECT_DIR$/risk_free_tree.py" />
         <option value="$PROJECT_DIR$/default_tree.py" />
-        <option value="$PROJECT_DIR$/models/default_tree.py" />
-        <option value="$PROJECT_DIR$/models/risk_free_tree.py" />
         <option value="$PROJECT_DIR$/models/stock_tree.py" />
+        <option value="$PROJECT_DIR$/tests/test_stock_tree.py" />
+        <option value="$PROJECT_DIR$/tests/test_risk_free_tree.py" />
+        <option value="$PROJECT_DIR$/models/risk_free_tree.py" />
+        <option value="$PROJECT_DIR$/tests/test_default_tree.py" />
+        <option value="$PROJECT_DIR$/models/default_tree.py" />
+        <option value="$PROJECT_DIR$/models/tree_base.py" />
+        <option value="$PROJECT_DIR$/models/convertible_bond_tree.py" />
+        <option value="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="x" value="952" />
+    <option name="width" value="976" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -264,22 +300,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python tests.Nosetests in tests">
-    <configuration name="Nosetests in PythonModels" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PythonModels" />
-      <option name="_new_regexPattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-    </configuration>
-    <configuration name="Nosetests in test_default_tree.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -291,10 +312,10 @@
       <module name="PythonModels" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_default_tree.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;test_convertible_bond_tree.TestConvertibleBondTree&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
-    <configuration name="Nosetests in test_risk_free_tree.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaper" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -306,10 +327,10 @@
       <module name="PythonModels" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_risk_free_tree.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaper&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
-    <configuration name="Nosetests in test_stock_tree.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperRealExample" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -321,8 +342,23 @@
       <module name="PythonModels" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_stock_tree.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperRealExample&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
+    <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PythonModels" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
     <configuration name="Nosetests in tests" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -340,19 +376,19 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in PythonModels" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in tests" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests in test_stock_tree.py" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests in test_risk_free_tree.py" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in test_default_tree.py" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in tests" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaper" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperRealExample" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python tests.Nosetests in tests" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in test_default_tree.py" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests in test_risk_free_tree.py" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests in test_stock_tree.py" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in PythonModels" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperRealExample" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaper" />
       </list>
     </recent_temporary>
   </component>
@@ -370,50 +406,50 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_test_default_tree_py - 2018.04.02 at 16h 57m 01s.xml">
-      <configuration name="Nosetests in test_default_tree.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree - 2018.04.04 at 00h 34m 41s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_default_tree_py - 2018.04.02 at 16h 57m 43s.xml">
-      <configuration name="Nosetests in test_default_tree.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_priceBond_ChambersPaperRealExample - 2018.04.04 at 00h 37m 20s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperRealExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_risk_free_tree_py - 2018.04.02 at 16h 56m 56s.xml">
-      <configuration name="Nosetests in test_risk_free_tree.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_priceBond_ChambersPaperSimpleExample - 2018.04.04 at 00h 35m 20s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_stock_tree_py - 2018.04.02 at 16h 56m 01s.xml">
-      <configuration name="Nosetests in test_stock_tree.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_priceBond_ChambersPaperSimpleExample - 2018.04.04 at 00h 37m 03s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.02 at 16h 55m 56s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_priceBond_ChambersPaperSimpleExample - 2018.04.04 at 00h 37m 50s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.02 at 16h 57m 47s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_priceBond_ChambersPaperSimpleExample - 2018.04.04 at 00h 38m 31s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.02 at 16h 58m 58s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_priceBond_ChambersPaperSimpleExample - 2018.04.04 at 00h 38m 54s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.02 at 17h 00m 20s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_priceBond_ChambersPaperSimpleExample - 2018.04.04 at 00h 40m 04s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.02 at 17h 00m 54s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_priceBond_ChambersPaperSimpleExample - 2018.04.04 at 00h 40m 22s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperSimpleExample" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.02 at 17h 01m 47s.xml">
+    <history-entry file="Nosetests_in_tests - 2018.04.04 at 00h 40m 27s.xml">
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973147" sideWeight="0.49448818" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18528464" sideWeight="0.49448818" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.5150376" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.4849624" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.48711064" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28635347" sideWeight="0.707304" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.5343716" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.49785176" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.46562836" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.48066595" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43064877" sideWeight="0.6401719" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.49785176" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35794184" sideWeight="0.82599354" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4683258" sideWeight="0.77121377" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5055118" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -432,11 +468,21 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_default_tree.py</url>
-          <line>37</line>
+          <line>68</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/convertible_bond_tree.py</url>
+          <line>112</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/convertible_bond_tree.py</url>
+          <line>281</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="35" />
+      <option name="time" value="54" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python Console Debugger">
@@ -464,49 +510,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_ipython_console_011.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="455" column="0" lean-forward="false" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_risk_free_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <marker date="1522699219336" expanded="true" signature="0:83" ph="import ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_default_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-          <folding>
-            <marker date="1522699219443" expanded="true" signature="0:81" ph="import ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_stock_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <marker date="1522699219403" expanded="true" signature="0:79" ph="import ..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -518,36 +526,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/default_tree.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/risk_free_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        <state relative-caret-position="84">
+          <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/stock_tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
+        <state relative-caret-position="721">
+          <caret line="132" column="37" lean-forward="true" selection-start-line="132" selection-start-column="37" selection-end-line="132" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_stock_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="15" column="59" lean-forward="true" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/IPython/core/interactiveshell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="2880" column="0" lean-forward="false" selection-start-line="2880" selection-start-column="0" selection-end-line="2880" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/tree_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2646">
-          <caret line="126" column="46" lean-forward="false" selection-start-line="126" selection-start-column="46" selection-end-line="126" selection-end-column="46" />
+        <state relative-caret-position="212">
+          <caret line="84" column="19" lean-forward="false" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/risk_free_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="104" column="73" lean-forward="false" selection-start-line="104" selection-start-column="73" selection-end-line="104" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="192" column="15" lean-forward="false" selection-start-line="192" selection-start-column="15" selection-end-line="192" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_risk_free_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="61" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/default_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="129" column="74" lean-forward="false" selection-start-line="129" selection-start-column="74" selection-end-line="129" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_default_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="61" column="8" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="62" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_convertible_bond_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
