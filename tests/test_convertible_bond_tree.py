@@ -1,6 +1,7 @@
 from tests.test_base import TestBase
 import models.convertible_bond_tree as underTest
 from models.convertible_bond_tree import Feature, FeatureSchedule, ConvertibleBondModelInput
+from parameterized import parameterized
 
 class TestConvertibleBondTree(TestBase):
     def test_priceBond_ChambersPaperRealExample(self):
@@ -10,6 +11,16 @@ class TestConvertibleBondTree(TestBase):
 
         self.assertAlmostEqual( 90.83511, convertibleBondModel.priceBond(), delta=0.0001)
 
+    @parameterized.expand([
+                    (-0.15,90.76877), (-0.1, 90.83511), (-0.05, 90.90137),
+                    (0, 90.96755), (0.05, 91.03367), (0.10, 91.09971), (0.15, 91.16569)])
+    def test_priceBond_ChambersPaperRealExample_WithDifferentCorrelations(self, irStockCorrelation, expectedPrice):
+        modelInput = self.chambersPaperRealExampleInput(irStockCorrelation=irStockCorrelation)
+
+        convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
+
+        self.assertAlmostEqual( expectedPrice, convertibleBondModel.priceBond(), delta=0.0001)
+
     def test_priceBond_ChambersPaperSimpleExample(self):
         modelInput = self.chambersPaperSimpleExampleInput()
 
@@ -17,7 +28,7 @@ class TestConvertibleBondTree(TestBase):
 
         self.assertAlmostEqual( 93.15353, convertibleBondModel.priceBond(), delta=0.005)
 
-    def chambersPaperRealExampleInput(self):
+    def chambersPaperRealExampleInput(self, irStockCorrelation=-0.1):
         zeroCouponRates = [0.05969, 0.06209, 0.06373, 0.06455, 0.06504, 0.06554]
         irVolatility = 0.1
         deltaTime = 1.0
@@ -26,7 +37,7 @@ class TestConvertibleBondTree(TestBase):
         recovery = 0.32
         initialStockPrice = 15.006
         stockVolatility = 0.353836
-        irStockCorrelation = -0.1
+        irStockCorrelation = irStockCorrelation
         conversionFactor = 5.07524
         time = 6
         featureSchedule = FeatureSchedule()

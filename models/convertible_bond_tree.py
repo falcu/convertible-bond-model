@@ -302,17 +302,17 @@ class ConvertibleBondTree(BaseTree):
         return newNodes
 
 
-def testConvertibleBond():
+def testConvertibleBond(correlation=-0.1, stockPrice=15.006, conversionFactor=5.07524):
     zeroCouponRates = [0.05969, 0.06209, 0.06373, 0.06455, 0.06504, 0.06554]
     irVolatility = 0.1
     deltaTime = 1.0
     faceValue = 100.0
     riskyZeroCoupons = [0.0611, 0.0646, 0.0663, 0.0678, 0.0683, 0.06894]
     recovery = 0.32
-    initialStockPrice = 15.006
+    initialStockPrice = stockPrice
     stockVolatility = 0.353836
-    irStockCorrelation = -0.1
-    conversionFactor = 5.07524
+    irStockCorrelation = correlation
+    conversionFactor = conversionFactor
     time = 6
     featureSchedule = FeatureSchedule()
     featureSchedule.addFeatures({3:Feature(callValue=94.205), 4:Feature(callValue=96.098), 5:Feature(callValue=98.030)})
@@ -321,4 +321,4 @@ def testConvertibleBond():
                  initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time)
 
     model = ConvertibleBondTree( modelInput )
-    return model
+    return model.priceBond()
