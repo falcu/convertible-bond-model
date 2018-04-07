@@ -3,8 +3,10 @@ from models.default_tree import DefaultTree
 from models.stock_tree import  StockTree
 from models.tree_base import BaseTree, Node
 import numpy as np
-from abc import abstractmethod
 from collections import deque
+from copy import copy
+from scipy.optimize import fsolve
+from abc import ABC, abstractmethod
 
 class NodeId:
     def __init__(self, level, index):
@@ -28,10 +30,18 @@ class BaseNode(Node):
     def _bondFaceValue(self):
         return self.modelInput.faceValue
 
-class PathProbabilityProviderIntermediate:
-
+class PathProbabilityProvider(ABC):
     def __init__(self, node):
         self.node = node
+
+    @abstractmethod
+    def pathsProbabilities(self):
+        pass
+
+class PathProbabilityProviderIntermediate(PathProbabilityProvider):
+
+    def __init__(self, node):
+        super().__init__(node)
 
     def pathsProbabilities(self):
         pathProbs =[]
@@ -46,10 +56,10 @@ class PathProbabilityProviderIntermediate:
 
         return pathProbs
 
-class PathProbabilityProviderTerminate:
+class PathProbabilityProviderTerminate(PathProbabilityProvider):
 
     def __init__(self, node):
-        self.node = node
+        super().__init__(node)
 
     def pathsProbabilities(self):
         pathProbs =[]
@@ -177,14 +187,27 @@ class ConvertibleBondTree(BaseTree):
     def __init__(self, modelInput):
         super().__init__()
         self.modelInput = modelInput
-        self.freeRiskIRTree = RiskFreeTree( modelInput.zeroCouponRates, modelInput.irVolatility, modelInput.deltaTime,
-                                            modelInput.faceValue)
-        self.defaultTree = DefaultTree( modelInput.zeroCouponRates, modelInput.irVolatility, modelInput.deltaTime,
-                                            modelInput.faceValue, modelInput.riskyZeroCoupons, modelInput.recovery, self.freeRiskIRTree )
-        self.stockTree = StockTree(modelInput.treeLevels, modelInput.initialStockPrice, modelInput.stockVolatility, modelInput.deltaTime)
+        self.freeRiskIRTree = None
+        self.defaultTree = None
+        self.stockTree = None
 
     def priceBond(self):
         return self.solve()
+
+    def impliedVolatility(self, marketPrice):
+        modelInputClone = copy(self.modelInput)
+        newModel = ConvertibleBondTree( modelInputClone )
+
+        def solver_fuc(impliedVolatility):
+            modelInputClone.stockVolatility = impliedVolatility[0]
+            result = marketPrice - newModel.priceBond()
+            result = result if modelInputClone.stockVolatility>=0 else 1000.0
+            return result
+
+        fsolve(solver_fuc, 1.5, xtol=1.5e-10, maxfev=1000000)
+
+        return modelInputClone.stockVolatility
+
 
     def treeSize(self):
         return self.modelInput.treeLevels
@@ -196,9 +219,17 @@ class ConvertibleBondTree(BaseTree):
         pass
 
     def _preBuildTree(self):
+        self._buildHelperTrees()
         self.freeRiskIRTree.solve()
         self.defaultTree.solve()
         self.stockTree.solve()
+
+    def _buildHelperTrees(self):
+        self.freeRiskIRTree = RiskFreeTree( self.modelInput.zeroCouponRates, self.modelInput.irVolatility,self.modelInput.deltaTime,
+                                            self.modelInput.faceValue)
+        self.defaultTree = DefaultTree( self.modelInput.zeroCouponRates, self.modelInput.irVolatility, self.modelInput.deltaTime,
+                                        self.modelInput.faceValue, self.modelInput.riskyZeroCoupons, self.modelInput.recovery, self.freeRiskIRTree )
+        self.stockTree = StockTree(self.modelInput.treeLevels, self.modelInput.initialStockPrice, self.modelInput.stockVolatility, self.modelInput.deltaTime)
 
     def _terminateNodesCount(self):
         #In a two-factor tree with recombination there are (n+1)^2 nodes per level
@@ -265,8 +296,6 @@ class ConvertibleBondTree(BaseTree):
 
         return [i+bucket-1, i+bucket, i+bucket+lvl, i+bucket+1+lvl]
 
-
-
     def _buildStockRatesPairs(self, currentLevel):
         #GF TODO Refactor code
         stockPrices = self.stockTree.stockPricesOfLevel(currentLevel)
@@ -321,4 +350,4 @@ def testConvertibleBond(correlation=-0.1, stockPrice=15.006, conversionFactor=5.
                  initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time)
 
     model = ConvertibleBondTree( modelInput )
-    return model.priceBond()
+    return modelInput,model

@@ -68,9 +68,12 @@ class LowestRatePriceNode(AbstractRatePriceNode):
         targetPrice = kwargs['target_price']
         def solver_fuc(rateToSolve):
             self.fixedRate = rateToSolve[0]
-            return targetPrice - firstNode.value()
+            result = targetPrice - firstNode.value()
+            result = result if self.fixedRate >=0 else 1000.0
 
-        fsolve(solver_fuc, 1.5)
+            return result
+
+        fsolve(solver_fuc, [1.0], xtol=1.5e-10, maxfev=1000000)
         self.solved = True
 
 class RootTreeNode(LowestRatePriceNode):

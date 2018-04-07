@@ -28,17 +28,42 @@ class TestConvertibleBondTree(TestBase):
 
         self.assertAlmostEqual( 93.15353, convertibleBondModel.priceBond(), delta=0.005)
 
-    def chambersPaperRealExampleInput(self, irStockCorrelation=-0.1):
+    def test_priceBond_bondPriceConvergesToStockPriceForHighStockPrice(self):
+        modelInput = self.chambersPaperRealExampleInput(stockPrice=10000000, conversionFactor=1.0)
+
+        convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
+
+        self.assertAlmostEqual( 10000000, convertibleBondModel.priceBond(), delta=0.5)
+
+    def test_priceBond_bondPriceConvergesToBondNonConvertiblePriceWhenStockIsLow(self):
+        modelInputNonConvertible = self.chambersPaperRealExampleInput(stockPrice=1, conversionFactor=0)
+        modelInput = self.chambersPaperRealExampleInput(stockPrice=5, conversionFactor=2)
+        nonConvertiblePrice = underTest.ConvertibleBondTree( modelInputNonConvertible ).priceBond()
+
+        convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
+
+        self.assertAlmostEqual( nonConvertiblePrice, convertibleBondModel.priceBond(), delta=0.001)
+
+    def test_impliedVolatility_chambersPaper(self):
+        modelInput = self.chambersPaperRealExampleInput()
+        marketPrice = 88.7060
+        expectedImpliedVolatiltiy = 0.315995
+
+        convertibleBondModel = underTest.ConvertibleBondTree(modelInput)
+
+        self.assertAlmostEqual( expectedImpliedVolatiltiy, convertibleBondModel.impliedVolatility(marketPrice), delta=0.00001)
+
+    def chambersPaperRealExampleInput(self, irStockCorrelation=-0.1, stockPrice=15.006, conversionFactor=5.07524):
         zeroCouponRates = [0.05969, 0.06209, 0.06373, 0.06455, 0.06504, 0.06554]
         irVolatility = 0.1
         deltaTime = 1.0
         faceValue = 100.0
         riskyZeroCoupons = [0.0611, 0.0646, 0.0663, 0.0678, 0.0683, 0.06894]
         recovery = 0.32
-        initialStockPrice = 15.006
+        initialStockPrice = stockPrice
         stockVolatility = 0.353836
         irStockCorrelation = irStockCorrelation
-        conversionFactor = 5.07524
+        conversionFactor = conversionFactor
         time = 6
         featureSchedule = FeatureSchedule()
         featureSchedule.addFeatures(
