@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50be0a39-3c55-4d83-8782-4249770edbb8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/data.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/viewmodels/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/viewmodels/viewmodels.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pricer_app.py" afterPath="$PROJECT_DIR$/app/pricer_app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" afterPath="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/convertible_bond_tree.py" afterPath="$PROJECT_DIR$/models/convertible_bond_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/sensitivity_analyser.py" afterPath="$PROJECT_DIR$/models/sensitivity_analyser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/viewmodels/viewmodels.py" afterPath="$PROJECT_DIR$/viewmodels/viewmodels.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +23,8 @@
       <file leaf-file-name="risk_free_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/risk_free_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="80" column="80" lean-forward="false" selection-start-line="80" selection-start-column="80" selection-end-line="80" selection-end-column="80" />
+            <state relative-caret-position="525">
+              <caret line="53" column="56" lean-forward="false" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -33,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sensitivity_analyser.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sensitivity_analyser.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/sensitivity_analyser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+            <state relative-caret-position="266">
+              <caret line="51" column="27" lean-forward="false" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -46,11 +45,9 @@
       <file leaf-file-name="convertible_bond_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-4550">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -58,8 +55,8 @@
       <file leaf-file-name="pricer_app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/pricer_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="659">
-              <caret line="84" column="14" lean-forward="false" selection-start-line="84" selection-start-column="14" selection-end-line="84" selection-end-column="14" />
+            <state relative-caret-position="679">
+              <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -77,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewmodels.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="viewmodels.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/viewmodels/viewmodels.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-519">
-              <caret line="128" column="24" lean-forward="true" selection-start-line="128" selection-start-column="24" selection-end-line="128" selection-end-column="24" />
+            <state relative-caret-position="126">
+              <caret line="202" column="0" lean-forward="false" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -132,10 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>treeSize</find>
-      <find>DownRatePriceNode</find>
-      <find>isSolved</find>
-      <find>ConvertibleBondBaseNonDefaultNode</find>
       <find>callSchedule</find>
       <find>lambdaDefault</find>
       <find>self.tree</find>
@@ -153,15 +146,19 @@
       <find>addFeaturdef e</find>
       <find>.recovery</find>
       <find>terminateValue=</find>
-      <find>def _pProbability</find>
       <find>def tar</find>
       <find>def target</find>
       <find>QListWidget</find>
       <find>chambersPaperSimpleExampleInput</find>
       <find>fsolve</find>
-      <find>PricerApp</find>
-      <find>floatToStr</find>
       <find>self.root.value()</find>
+      <find>self.volatility</find>
+      <find>floatToStr</find>
+      <find>def _pProbability</find>
+      <find>PricerApp</find>
+      <find>def rate</find>
+      <find>QCheckBox</find>
+      <find>ConvertibleBondSensitivityAnalyzer</find>
     </findStrings>
     <replaceStrings>
       <replace>hasLower</replace>
@@ -177,10 +174,10 @@
       <replace>BaseTerminateNonDefaultNode</replace>
       <replace>DefaultNode</replace>
       <replace>defaultProbability</replace>
+      <replace>children</replace>
       <replace>self.root</replace>
       <replace>PricerWidget</replace>
       <replace>numberToStr</replace>
-      <replace>children</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -203,14 +200,14 @@
         <option value="$PROJECT_DIR$/tests/test_risk_free_tree.py" />
         <option value="$PROJECT_DIR$/tests/test_default_tree.py" />
         <option value="$PROJECT_DIR$/models/tree_base.py" />
-        <option value="$PROJECT_DIR$/models/sensitivity_analyser.py" />
         <option value="$PROJECT_DIR$/models/default_tree.py" />
-        <option value="$PROJECT_DIR$/models/convertible_bond_tree.py" />
         <option value="$PROJECT_DIR$/models/risk_free_tree.py" />
         <option value="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" />
         <option value="$PROJECT_DIR$/models/data.py" />
+        <option value="$PROJECT_DIR$/models/convertible_bond_tree.py" />
         <option value="$PROJECT_DIR$/app/pricer_app.py" />
         <option value="$PROJECT_DIR$/viewmodels/viewmodels.py" />
+        <option value="$PROJECT_DIR$/models/sensitivity_analyser.py" />
       </list>
     </option>
   </component>
@@ -417,9 +414,6 @@
     <history-entry file="Nosetests_in_test_convertible_bond_tree_py - 2018.04.07 at 20h 13m 25s.xml">
       <configuration name="Nosetests in test_convertible_bond_tree.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.07 at 16h 25m 42s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_in_tests - 2018.04.07 at 16h 28m 57s.xml">
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
@@ -435,12 +429,24 @@
     <history-entry file="Nosetests_in_tests - 2018.04.08 at 01h 54m 50s.xml">
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.08 at 19h 25m 42s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18528464" sideWeight="0.49448818" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22932331" sideWeight="0.49448818" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4675615" sideWeight="0.24812031" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.49570355" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.4677766" order="6" side_tool="false" content_ui="tabs" />
@@ -470,6 +476,31 @@
           <line>68</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/sensitivity_analyser.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/sensitivity_analyser.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/viewmodels/viewmodels.py</url>
+          <line>202</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/sensitivity_analyser.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/sensitivity_analyser.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -478,7 +509,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="72" />
+      <option name="time" value="105" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python Console Debugger">
@@ -586,42 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/default_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1827">
-          <caret line="87" column="44" lean-forward="false" selection-start-line="87" selection-start-column="44" selection-end-line="87" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/risk_free_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="80" column="80" lean-forward="false" selection-start-line="80" selection-start-column="80" selection-end-line="80" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Anaconda3/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-168">
-          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/sensitivity_analyser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/tree_base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -654,33 +649,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/pricer_app.py">
+    <entry file="file://$PROJECT_DIR$/models/default_tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="84" column="14" lean-forward="false" selection-start-line="84" selection-start-column="14" selection-end-line="84" selection-end-column="14" />
+        <state relative-caret-position="1827">
+          <caret line="87" column="44" lean-forward="false" selection-start-line="87" selection-start-column="44" selection-end-line="87" selection-end-column="44" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="1580" column="9" lean-forward="true" selection-start-line="1580" selection-start-column="9" selection-end-line="1580" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/risk_free_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="53" column="56" lean-forward="false" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+        <state relative-caret-position="-4550">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/matplotlib/pyplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="490" column="0" lean-forward="false" selection-start-line="490" selection-start-column="0" selection-end-line="490" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/pricer_app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
           <folding>
-            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/viewmodels/viewmodels.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-519">
-          <caret line="128" column="24" lean-forward="true" selection-start-line="128" selection-start-column="24" selection-end-line="128" selection-end-column="24" />
+        <state relative-caret-position="126">
+          <caret line="202" column="0" lean-forward="false" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/sensitivity_analyser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="51" column="27" lean-forward="false" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,13 +1,14 @@
 import sys
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QTabWidget, QLabel, QComboBox, QPushButton, QGridLayout,
-    QLineEdit, QApplication, QVBoxLayout, QHBoxLayout, QListWidget)
+    QLineEdit, QApplication, QVBoxLayout, QHBoxLayout, QListWidget, QCheckBox)
 
 from PyQt5.QtGui import QDoubleValidator
-from viewmodels.viewmodels import ListViewModel, TextViewModel, ConvertibleBondViewModel
+from viewmodels.viewmodels import ConvertibleBondViewModel, SensitivityAnalyzerViewModel
 import models.data as model_data
+import PyQt5.QtCore as qtCore
 
 class App(QMainWindow):
-    def __init__(self, viewModel):
+    def __init__(self, convertibleBondViewModel, analyzerViewModel):
         super().__init__()
         self.title = 'Pricer Bono Convertible'
         self.left = 100
@@ -17,21 +18,23 @@ class App(QMainWindow):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
-        self.pricerWidget = PricerWidget(self, viewModel)
+        self.pricerWidget = PricerWidget(self, convertibleBondViewModel, analyzerViewModel)
         self.setCentralWidget(self.pricerWidget)
 
         self.show()
 
 class PricerWidget(QWidget):
 
-    def __init__(self, parent, viewModel):
+    def __init__(self, parent, convertibleBondViewModel, analyzerViewModel):
         super().__init__( parent )
-        self.convertibleBondViewModel = viewModel
+        self.convertibleBondViewModel = convertibleBondViewModel
+        self.analyzerViewModel = analyzerViewModel
         self.initUI()
 
     def initUI(self):
         self._createTabs()
         self._setPricerTab()
+        self._setAnalyzeTab()
 
     def _createTabs(self):
         self.layout = QVBoxLayout(self)
@@ -45,7 +48,7 @@ class PricerWidget(QWidget):
         self.setLayout(self.layout)
 
     def _setPricerTab(self):
-        layout = QGridLayout()
+        layout = QGridLayout(self.tabModel)
         self.tabModel.setLayout(layout)
 
         inputs = [self._makeLineEditWidget(self.convertibleBondViewModel.bondPriceViewModel, 'Precio Bono:', readOnly=True),
@@ -120,12 +123,44 @@ class PricerWidget(QWidget):
 
         return mainWidget
 
+    def _makeComboBoxWidget(self, viewModel):
+        comboBoxWidget = QComboBox(self)
+        comboBoxWidget.currentIndexChanged[int].connect(lambda : viewModel.onOptionSelected())
+        viewModel.optionsProvider = comboBoxWidget
+        return comboBoxWidget
+
+    def _setAnalyzeTab(self):
+        layout = QVBoxLayout(self.tabAnalyze)
+        layout.setAlignment( qtCore.Qt.AlignTop )
+        inputWidget = QWidget( self.tabAnalyze )
+        horizontalLayout = QHBoxLayout()
+        inputWidget.setLayout( horizontalLayout )
+        self.tabAnalyze.setLayout(layout)
+        analyzeButton = QPushButton('Graficar')
+        analyzeButton.clicked[bool].connect(lambda: self.analyzerViewModel.onAnalyzeClicked())
+        includeNoConversionCheckBox = QCheckBox('Incluir precio sin conversion', self.tabAnalyze)
+        includeNoConversionCheckBox.setTristate(False)
+        useNewGraphCheckBox = QCheckBox('En nuevo grafico', self.tabAnalyze)
+        useNewGraphCheckBox.setTristate(False)
+        self.analyzerViewModel.includeNoConversionViewModel.checkBox = includeNoConversionCheckBox
+        self.analyzerViewModel.newGraphViewModel.checkBox = useNewGraphCheckBox
+        horizontalLayout.addWidget(self._makeLineEditWidget(self.analyzerViewModel.fromViewModel, 'Desde'))
+        horizontalLayout.addWidget(self._makeLineEditWidget(self.analyzerViewModel.toViewModel, 'Hasta'))
+        horizontalLayout.addWidget(self._makeLineEditWidget(self.analyzerViewModel.numberOfPointsViewModel, 'Cantidad Puntos'))
+        layout.addWidget(self._makeComboBoxWidget(self.analyzerViewModel.optionsViewModel) )
+        layout.addWidget(inputWidget)
+        layout.addWidget(includeNoConversionCheckBox)
+        layout.addWidget(useNewGraphCheckBox)
+        layout.addWidget(analyzeButton)
+
 
 
 
 if __name__ == '__main__':
-    viewModel = ConvertibleBondViewModel()
+    convertibleBondViewModel = ConvertibleBondViewModel()
+    analyzerViewModel = SensitivityAnalyzerViewModel( convertibleBondViewModel )
     app = QApplication(sys.argv)
-    ex = App(viewModel)
-    viewModel.update( model_data.chambersPaperRealExampleInput())
+    ex = App(convertibleBondViewModel, analyzerViewModel)
+    convertibleBondViewModel.update( model_data.chambersPaperRealExampleInput())
+    analyzerViewModel.update({'options':['initialStockPrice','irVolatility','recovery','stockVolatility','irStockCorrelation','conversionFactor'], 'from':0.0, 'to':30.0, 'points':10})
     sys.exit(app.exec_())

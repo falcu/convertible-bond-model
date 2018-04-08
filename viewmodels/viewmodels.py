@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 from models.convertible_bond_tree import FeatureSchedule, ConvertibleBondModelInput, ConvertibleBondTree
+from models.sensitivity_analyser import ConvertibleBondSensitivityAnalyzer, Plotter
+import numpy as np
 
 class ViewModel(ABC):
 
@@ -10,6 +12,20 @@ class ViewModel(ABC):
     @abstractmethod
     def update(self, aValue):
         pass
+
+class CheckBoxViewModel(ViewModel):
+    def __init__(self, checkBox=None, convertTo=None, convertFrom = None):
+        self.checkBox = checkBox
+        self.convertTo = convertTo or Converters.boolToInt
+        self.convertFrom = convertFrom or Converters.intToBool
+        self._checked = False
+
+    def update(self, aValue):
+        self._checked = aValue
+        self.checkBox.setCheckState( self.convertTo(aValue))
+
+    def getInput(self):
+        return self.convertFrom( self.checkBox.checkState() )
 
 class ListViewModel(ViewModel):
     def __init__(self, listView=None, newItemInput=None, convertTo=None, convertFrom = None):
@@ -70,6 +86,25 @@ class TextViewModel(ViewModel):
     def onTextChanged(self):
         self._rawValue = self.inputText.text()
 
+
+class OptionSelectionViewModel(ViewModel):
+    def __init__(self, optionsProvider=None, convertTo=None, convertFrom = None):
+        self.optionsProvider = optionsProvider
+        self.convertTo = convertTo or Converters.nullConverter
+        self.convertFrom = convertFrom or Converters.nullConverter
+        self._selectedOption = None
+
+    def update(self, aValue):
+        self.optionsProvider.clear()
+        self.optionsProvider.addItems( self.convertTo(aValue) )
+        self._selectedOption = aValue[0]
+
+    def getInput(self):
+        return self._selectedOption
+
+    def onOptionSelected(self):
+        self._selectedOption = self.optionsProvider.currentText()
+
 class ConvertibleBondViewModel(ViewModel):
     def __init__(self, timeViewModel=None, riskFreeViewModel=None, irVolatilityViewModel=None, deltaTimeViewModel=None,
                  faceValueViewModel=None, riskyZeroCouponsViewModel=None, recoveryViewModel=None,
@@ -126,13 +161,62 @@ class ConvertibleBondViewModel(ViewModel):
 
     def onPriceBondClicked(self):
         self.bondPriceViewModel.update(0.0)
-        self._setModel()
+        self.setModel()
         self.bondPriceViewModel.update( self.model.priceBond() )
 
-    def _setModel(self):
+    def setModel(self):
         modelInput = self.getInput()
         self.model = ConvertibleBondTree(modelInput)
 
+
+class SensitivityAnalyzerViewModel(ViewModel):
+    def __init__(self, convertibleBondViewModel, optionsViewModel=None, fromViewModel=None,
+                 toViewModel=None, numberOfPointsViewModel=None, includeNoConversionViewModel=None,newGraphViewModel=None):
+        self.convertibleBondViewModel = convertibleBondViewModel
+        self.optionsViewModel = optionsViewModel or OptionSelectionViewModel()
+        self.fromViewModel = fromViewModel or TextViewModel()
+        self.toViewModel = toViewModel or TextViewModel()
+        self.numberOfPointsViewModel = numberOfPointsViewModel or TextViewModel( convertFrom=Converters.strToInt )
+        self.plotter = Plotter()
+        self.includeNoConversionViewModel = includeNoConversionViewModel or CheckBoxViewModel()
+        self.newGraphViewModel = newGraphViewModel or CheckBoxViewModel()
+
+    def onIncludeNoConvesionChanged(self):
+        pass
+
+    def onAnalyzeClicked(self):
+        data = self.getInput()
+        self.convertibleBondViewModel.setModel()
+        model = self.convertibleBondViewModel.model.clone()
+        analyzer = ConvertibleBondSensitivityAnalyzer( model )
+        selectedAtribute = data['selected_option']
+        dependentValues = np.linspace(data['from'], data['to'], data['points'])
+        independentValues = analyzer.analyzeBondPrice(selectedAtribute, dependentValues)
+        dataToPlot = [{'x':dependentValues, 'y':independentValues, 'color':'r',
+                           'label':'Bond Price({})'.format(selectedAtribute)}]
+
+        if self._includeNoConversionPrice():
+            independentValues = analyzer.analyzeBondPriceNoConversion(selectedAtribute, dependentValues)
+            dataToPlot.append({'x':dependentValues, 'y':independentValues, 'color':'b',
+                           'label':'Bond No Conversion Price({})'.format(selectedAtribute)})
+
+        self.plotter.plot(dataToPlot, newGraph=self._useNewGraph())
+
+    def _includeNoConversionPrice(self):
+        return self.includeNoConversionViewModel.getInput()
+
+    def _useNewGraph(self):
+        return self.newGraphViewModel.getInput()
+
+    def update(self, aValue):
+        self.optionsViewModel.update( aValue['options'] )
+        self.fromViewModel.update( aValue.get('from',0.0) )
+        self.toViewModel.update( aValue.get('to',1.0) )
+        self.numberOfPointsViewModel.update( aValue.get('points',0) )
+
+    def getInput(self):
+        return {'selected_option':self.optionsViewModel.getInput(), 'from':self.fromViewModel.getInput(),
+                'to':self.toViewModel.getInput(), 'points':self.numberOfPointsViewModel.getInput()}
 
 class Converters:
 
@@ -143,6 +227,18 @@ class Converters:
     @staticmethod
     def strToFloat(value):
         return float(value)
+
+    @staticmethod
+    def boolToInt(value):
+        return int(value)
+
+    @staticmethod
+    def intToBool(value):
+        return bool(value)
+
+    @staticmethod
+    def strToInt(value):
+        return int(value)
 
     @staticmethod
     def numberToStr(value):

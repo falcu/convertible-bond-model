@@ -194,6 +194,17 @@ class ConvertibleBondTree(BaseTree):
     def priceBond(self):
         return self.solve()
 
+    def priceBondWithNoConversion(self):
+        modelInputClone = copy(self.modelInput)
+        newModel = ConvertibleBondTree(modelInputClone)
+        modelInputClone.conversionFactor = 0
+
+        return newModel.solve()
+
+    def clone(self):
+        modelInputClone = copy(self.modelInput)
+        return ConvertibleBondTree( modelInputClone )
+
     def impliedVolatility(self, marketPrice):
         modelInputClone = copy(self.modelInput)
         newModel = ConvertibleBondTree( modelInputClone )
