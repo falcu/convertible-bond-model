@@ -162,5 +162,5 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = App(convertibleBondViewModel, analyzerViewModel)
     convertibleBondViewModel.update( model_data.chambersPaperRealExampleInput())
-    analyzerViewModel.update({'options':['initialStockPrice','irVolatility','recovery','stockVolatility','irStockCorrelation','conversionFactor'], 'from':0.0, 'to':30.0, 'points':10})
+    analyzerViewModel.update({'options':['initialStockPrice','irVolatility','recovery','stockVolatility','irStockCorrelation','conversionFactor','irRateMovement'], 'from':0.0, 'to':30.0, 'points':10})
     sys.exit(app.exec_())

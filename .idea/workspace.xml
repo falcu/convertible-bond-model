@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50be0a39-3c55-4d83-8782-4249770edbb8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pricer_app.py" afterPath="$PROJECT_DIR$/app/pricer_app.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/convertible_bond_tree.py" afterPath="$PROJECT_DIR$/models/convertible_bond_tree.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/sensitivity_analyser.py" afterPath="$PROJECT_DIR$/models/sensitivity_analyser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/viewmodels/viewmodels.py" afterPath="$PROJECT_DIR$/viewmodels/viewmodels.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,7 +29,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sensitivity_analyser.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sensitivity_analyser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/sensitivity_analyser.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
@@ -42,12 +39,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="convertible_bond_tree.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="convertible_bond_tree.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4550">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="29" />
-              <folding />
+            <state relative-caret-position="377">
+              <caret line="242" column="45" lean-forward="false" selection-start-line="242" selection-start-column="45" selection-end-line="242" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,8 +54,8 @@
       <file leaf-file-name="pricer_app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/pricer_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+            <state relative-caret-position="1299">
+              <caret line="154" column="0" lean-forward="true" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -129,7 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>callSchedule</find>
       <find>lambdaDefault</find>
       <find>self.tree</find>
       <find>self.tree</find>
@@ -157,8 +155,9 @@
       <find>def _pProbability</find>
       <find>PricerApp</find>
       <find>def rate</find>
-      <find>QCheckBox</find>
       <find>ConvertibleBondSensitivityAnalyzer</find>
+      <find>zeroCouponRates</find>
+      <find>QCheckBox</find>
     </findStrings>
     <replaceStrings>
       <replace>hasLower</replace>
@@ -174,10 +173,10 @@
       <replace>BaseTerminateNonDefaultNode</replace>
       <replace>DefaultNode</replace>
       <replace>defaultProbability</replace>
-      <replace>children</replace>
       <replace>self.root</replace>
-      <replace>PricerWidget</replace>
       <replace>numberToStr</replace>
+      <replace>children</replace>
+      <replace>PricerWidget</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -204,10 +203,10 @@
         <option value="$PROJECT_DIR$/models/risk_free_tree.py" />
         <option value="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" />
         <option value="$PROJECT_DIR$/models/data.py" />
-        <option value="$PROJECT_DIR$/models/convertible_bond_tree.py" />
-        <option value="$PROJECT_DIR$/app/pricer_app.py" />
         <option value="$PROJECT_DIR$/viewmodels/viewmodels.py" />
         <option value="$PROJECT_DIR$/models/sensitivity_analyser.py" />
+        <option value="$PROJECT_DIR$/app/pricer_app.py" />
+        <option value="$PROJECT_DIR$/models/convertible_bond_tree.py" />
       </list>
     </option>
   </component>
@@ -402,26 +401,11 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_test_convertible_bond_tree_py - 2018.04.07 at 20h 11m 40s.xml">
-      <configuration name="Nosetests in test_convertible_bond_tree.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test_convertible_bond_tree_py - 2018.04.07 at 20h 12m 13s.xml">
-      <configuration name="Nosetests in test_convertible_bond_tree.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_in_test_convertible_bond_tree_py - 2018.04.07 at 20h 12m 35s.xml">
       <configuration name="Nosetests in test_convertible_bond_tree.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Nosetests_in_test_convertible_bond_tree_py - 2018.04.07 at 20h 13m 25s.xml">
       <configuration name="Nosetests in test_convertible_bond_tree.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.07 at 16h 28m 57s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.07 at 17h 03m 13s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.07 at 20h 10m 45s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
     <history-entry file="Nosetests_in_tests - 2018.04.07 at 20h 13m 35s.xml">
       <configuration name="Nosetests in tests" configurationId="tests" />
@@ -430,6 +414,21 @@
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
     <history-entry file="Nosetests_in_tests - 2018.04.08 at 19h 25m 42s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.08 at 19h 30m 47s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.08 at 19h 31m 44s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.08 at 19h 31m 54s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.08 at 19h 33m 18s.xml">
+      <configuration name="Nosetests in tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_tests - 2018.04.08 at 21h 39m 14s.xml">
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
   </component>
@@ -677,14 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4550">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/matplotlib/pyplot.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -698,16 +689,6 @@
         <state relative-caret-position="138">
           <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/pricer_app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -726,6 +707,26 @@
         <state relative-caret-position="266">
           <caret line="51" column="27" lean-forward="false" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/pricer_app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1299">
+          <caret line="154" column="0" lean-forward="true" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="242" column="45" lean-forward="false" selection-start-line="242" selection-start-column="45" selection-end-line="242" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

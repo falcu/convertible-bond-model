@@ -168,7 +168,8 @@ class NullFeature(Feature):
 
 class ConvertibleBondModelInput:
     def __init__(self, zeroCouponRates, irVolatility, deltaTime, faceValue, riskyZeroCoupons, recovery,
-                 initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time):
+                 initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time,
+                 irRateMovement=0.0):
         self.zeroCouponRates = zeroCouponRates
         self.irVolatility = irVolatility
         self.deltaTime = deltaTime
@@ -182,6 +183,7 @@ class ConvertibleBondModelInput:
         self.featureSchedule = featureSchedule
         self.time = time
         self.treeLevels = int(time+1/deltaTime)
+        self.irRateMovement = irRateMovement
 
 class ConvertibleBondTree(BaseTree):
     def __init__(self, modelInput):
@@ -236,10 +238,13 @@ class ConvertibleBondTree(BaseTree):
         self.stockTree.solve()
 
     def _buildHelperTrees(self):
-        self.freeRiskIRTree = RiskFreeTree( self.modelInput.zeroCouponRates, self.modelInput.irVolatility,self.modelInput.deltaTime,
+        rateMovement = self.modelInput.irRateMovement/10000 # from basic points to number
+        zeroCouponRates = [rate+rateMovement for rate in self.modelInput.zeroCouponRates]
+        riskyZeroCoupons = [rate+rateMovement for rate in self.modelInput.riskyZeroCoupons]
+        self.freeRiskIRTree = RiskFreeTree( zeroCouponRates, self.modelInput.irVolatility,self.modelInput.deltaTime,
                                             self.modelInput.faceValue)
-        self.defaultTree = DefaultTree( self.modelInput.zeroCouponRates, self.modelInput.irVolatility, self.modelInput.deltaTime,
-                                        self.modelInput.faceValue, self.modelInput.riskyZeroCoupons, self.modelInput.recovery, self.freeRiskIRTree )
+        self.defaultTree = DefaultTree( zeroCouponRates, self.modelInput.irVolatility, self.modelInput.deltaTime,
+                                        self.modelInput.faceValue, riskyZeroCoupons, self.modelInput.recovery, self.freeRiskIRTree )
         self.stockTree = StockTree(self.modelInput.treeLevels, self.modelInput.initialStockPrice, self.modelInput.stockVolatility, self.modelInput.deltaTime)
 
     def _terminateNodesCount(self):
