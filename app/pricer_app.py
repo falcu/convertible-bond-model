@@ -51,7 +51,8 @@ class PricerWidget(QWidget):
         layout = QGridLayout(self.tabModel)
         self.tabModel.setLayout(layout)
 
-        inputs = [self._makeLineEditWidget(self.convertibleBondViewModel.bondPriceViewModel, 'Precio Bono:', readOnly=True),
+        inputs = [self._makePriceBondWidget(),
+                  self._makeImpliedVolatilityWidget(),
                   self._makeLineEditWidget(self.convertibleBondViewModel.timeViewModel, 'Periodos'),
                   self._makeLineEditWidget(self.convertibleBondViewModel.deltaTimeViewModel, 'Delta T'),
                   self._makeLineEditWidget(self.convertibleBondViewModel.irVolatilityViewModel,'Volatilidad Tasa de Interes'),
@@ -72,17 +73,38 @@ class PricerWidget(QWidget):
         for i in range(len(inputs)):
             layout.addWidget( inputs[i], i, 0)
 
+    def _makePriceBondWidget(self ):
+        priceBondResultWidget = self._makeLineEditWidget(self.convertibleBondViewModel.bondPriceViewModel, 'Precio Bono:',
+                                                   readOnly=True)
         bondPriceButton = QPushButton(text='Valuar')
         bondPriceButton.clicked[bool].connect(lambda: self.convertibleBondViewModel.onPriceBondClicked())
-        layout.addWidget(bondPriceButton, 0, 1)
+
+        return self._makeContainerWidget(QHBoxLayout, [priceBondResultWidget,bondPriceButton], alignment=qtCore.Qt.AlignLeft)
+
+    def _makeImpliedVolatilityWidget(self):
+        inputMarketPriceWidget = self._makeLineEditWidget(self.convertibleBondViewModel.impliedVolatilityViewodel.marketPriceViewModel,
+                               'Precio Mercado:')
+        showImpliedVolatilityWidget = self._makeLineEditWidget(self.convertibleBondViewModel.impliedVolatilityViewodel.outputViewModel,
+                               'Volatilidad Implicita:', readOnly=True)
+        computeImpliedVolatilityButton = QPushButton(text='Calcular')
+        computeImpliedVolatilityButton.clicked[bool].connect(lambda: self.convertibleBondViewModel.onImpliedVolatilityClicked())
+
+        return self._makeContainerWidget(QHBoxLayout,
+                      [inputMarketPriceWidget,showImpliedVolatilityWidget,computeImpliedVolatilityButton], alignment=qtCore.Qt.AlignLeft)
+
+    def _makeContainerWidget(self, LayoutClass, childWidgets,alignment=None, parent=None, containerWidget=None):
+        containerWidget = containerWidget or QWidget( parent or self )
+        containerLayout = LayoutClass(containerWidget)
+        containerWidget.setLayout(containerLayout)
+        if alignment:
+            containerLayout.setAlignment(alignment)
+        for widget in childWidgets:
+            containerLayout.addWidget( widget )
+
+        return containerWidget
+
 
     def _makeEditableListWidget(self, viewModel, title='' ):
-        parentWidget = QWidget(self)
-        parentLayout = QVBoxLayout()
-        parentWidget.setLayout( parentLayout )
-
-        mainWidget = QWidget(self)
-        layout = QHBoxLayout()
         listWidget      = QListWidget()
         listWidget.setSelectionMode( QListWidget.MultiSelection)
         addItemLabel    = QLabel( text='Ingrese valor')
@@ -96,32 +118,20 @@ class PricerWidget(QWidget):
         addItemButton.clicked[bool].connect(lambda : viewModel.onAddNewItem())
         removeItemsButton.clicked[bool].connect(lambda : viewModel.onRemoveSelectedItems())
         removeAllItemsButton.clicked[bool].connect(lambda : viewModel.onRemoveAllItems())
-        layout.addWidget(listWidget)
-        layout.addWidget(addItemLabel)
-        layout.addWidget(addItemLineEdit)
-        layout.addWidget(addItemButton)
-        layout.addWidget(removeItemsButton)
-        layout.addWidget(removeAllItemsButton)
-        mainWidget.setLayout( layout )
+        childWidgets = [listWidget, addItemLabel, addItemLineEdit, addItemButton, removeItemsButton, removeAllItemsButton]
+        mainWidget = self._makeContainerWidget(QHBoxLayout, childWidgets)
 
-        parentLayout.addWidget( QLabel(text=title))
-        parentLayout.addWidget( mainWidget )
-        return parentWidget
+        return self._makeContainerWidget(QVBoxLayout, [QLabel(text=title), mainWidget])
 
     def _makeLineEditWidget(self, viewModel, title='', readOnly=False):
-        parentLayout = QHBoxLayout()
-        mainWidget = QWidget(self)
         label = QLabel(text=title)
         textLineEdit = QLineEdit(text='')
         textLineEdit.setValidator(QDoubleValidator())
         textLineEdit.setDisabled(readOnly)
         textLineEdit.textChanged.connect( viewModel.onTextChanged )
-        parentLayout.addWidget( label )
-        parentLayout.addWidget( textLineEdit )
         viewModel.inputText = textLineEdit
-        mainWidget.setLayout( parentLayout )
 
-        return mainWidget
+        return self._makeContainerWidget(QHBoxLayout, [label,textLineEdit] )
 
     def _makeComboBoxWidget(self, viewModel):
         comboBoxWidget = QComboBox(self)
@@ -130,12 +140,6 @@ class PricerWidget(QWidget):
         return comboBoxWidget
 
     def _setAnalyzeTab(self):
-        layout = QVBoxLayout(self.tabAnalyze)
-        layout.setAlignment( qtCore.Qt.AlignTop )
-        inputWidget = QWidget( self.tabAnalyze )
-        horizontalLayout = QHBoxLayout()
-        inputWidget.setLayout( horizontalLayout )
-        self.tabAnalyze.setLayout(layout)
         analyzeButton = QPushButton('Graficar')
         analyzeButton.clicked[bool].connect(lambda: self.analyzerViewModel.onAnalyzeClicked())
         includeNoConversionCheckBox = QCheckBox('Incluir precio sin conversion', self.tabAnalyze)
@@ -144,17 +148,15 @@ class PricerWidget(QWidget):
         useNewGraphCheckBox.setTristate(False)
         self.analyzerViewModel.includeNoConversionViewModel.checkBox = includeNoConversionCheckBox
         self.analyzerViewModel.newGraphViewModel.checkBox = useNewGraphCheckBox
-        horizontalLayout.addWidget(self._makeLineEditWidget(self.analyzerViewModel.fromViewModel, 'Desde'))
-        horizontalLayout.addWidget(self._makeLineEditWidget(self.analyzerViewModel.toViewModel, 'Hasta'))
-        horizontalLayout.addWidget(self._makeLineEditWidget(self.analyzerViewModel.numberOfPointsViewModel, 'Cantidad Puntos'))
-        layout.addWidget(self._makeComboBoxWidget(self.analyzerViewModel.optionsViewModel) )
-        layout.addWidget(inputWidget)
-        layout.addWidget(includeNoConversionCheckBox)
-        layout.addWidget(useNewGraphCheckBox)
-        layout.addWidget(analyzeButton)
+        inputWidget = self._makeContainerWidget(QHBoxLayout,
+                                    [self._makeLineEditWidget(self.analyzerViewModel.fromViewModel, 'Desde'),
+                                    self._makeLineEditWidget(self.analyzerViewModel.toViewModel, 'Hasta'),
+                                     self._makeLineEditWidget(self.analyzerViewModel.numberOfPointsViewModel,
+                                                                  'Cantidad Puntos')          ], parent=self.tabAnalyze)
+        analyzeOptionsComboBox = self._makeComboBoxWidget(self.analyzerViewModel.optionsViewModel)
+        childWidgets = [analyzeOptionsComboBox, inputWidget, includeNoConversionCheckBox, useNewGraphCheckBox, analyzeButton]
 
-
-
+        self._makeContainerWidget(QVBoxLayout,childWidgets,alignment=qtCore.Qt.AlignTop, containerWidget=self.tabAnalyze)
 
 if __name__ == '__main__':
     convertibleBondViewModel = ConvertibleBondViewModel()

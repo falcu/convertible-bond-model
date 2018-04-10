@@ -86,6 +86,19 @@ class TextViewModel(ViewModel):
     def onTextChanged(self):
         self._rawValue = self.inputText.text()
 
+class ImpliedVolatilityViewModel(ViewModel):
+    def __init__(self, marketPriceViewModel=None, outputViewModel=None):
+        self.marketPriceViewModel = marketPriceViewModel or TextViewModel()
+        self.outputViewModel = outputViewModel or TextViewModel()
+
+    def update(self, aValue):
+        self.marketPriceViewModel.update( aValue )
+
+    def getInput(self):
+        return self.marketPriceViewModel.getInput()
+
+    def setImpliedVolatility(self, volatility):
+        self.outputViewModel.update( volatility )
 
 class OptionSelectionViewModel(ViewModel):
     def __init__(self, optionsProvider=None, convertTo=None, convertFrom = None):
@@ -109,7 +122,7 @@ class ConvertibleBondViewModel(ViewModel):
     def __init__(self, timeViewModel=None, riskFreeViewModel=None, irVolatilityViewModel=None, deltaTimeViewModel=None,
                  faceValueViewModel=None, riskyZeroCouponsViewModel=None, recoveryViewModel=None,
                  initialStockPriceViewModel=None,stockVolatilityViewModel=None, irStockCorrelationViewModel=None,
-                 conversionFactorViewModel=None, featureScheduleViewModel=None):
+                 conversionFactorViewModel=None, featureScheduleViewModel=None, impliedVolatilityViewodel=None):
         super().__init__()
         self.timeViewModel                  = timeViewModel or TextViewModel( convertFrom=Converters.strToInt )
         self.riskFreeViewModel              = riskFreeViewModel or ListViewModel()
@@ -125,6 +138,7 @@ class ConvertibleBondViewModel(ViewModel):
         self.featureScheduleViewModel       = featureScheduleViewModel or ListViewModel( convertTo=Converters.featureScheduleToStrList,
                                                                                  convertFrom=Converters.strListToFeature)
         self.bondPriceViewModel             = TextViewModel()
+        self.impliedVolatilityViewodel      = impliedVolatilityViewodel or ImpliedVolatilityViewModel()
         self.model                          = None
 
 
@@ -164,6 +178,12 @@ class ConvertibleBondViewModel(ViewModel):
         self.setModel()
         self.bondPriceViewModel.update( self.model.priceBond() )
 
+    def onImpliedVolatilityClicked(self):
+        self.impliedVolatilityViewodel.outputViewModel.update(0.0)
+        self.setModel()
+        impliedVolatility = self.model.impliedVolatility( self.impliedVolatilityViewodel.marketPriceViewModel.getInput())
+        self.impliedVolatilityViewodel.setImpliedVolatility( impliedVolatility )
+
     def setModel(self):
         modelInput = self.getInput()
         self.model = ConvertibleBondTree(modelInput)
@@ -180,9 +200,6 @@ class SensitivityAnalyzerViewModel(ViewModel):
         self.plotter = Plotter()
         self.includeNoConversionViewModel = includeNoConversionViewModel or CheckBoxViewModel()
         self.newGraphViewModel = newGraphViewModel or CheckBoxViewModel()
-
-    def onIncludeNoConvesionChanged(self):
-        pass
 
     def onAnalyzeClicked(self):
         data = self.getInput()

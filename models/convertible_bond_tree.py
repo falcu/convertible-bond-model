@@ -221,7 +221,6 @@ class ConvertibleBondTree(BaseTree):
 
         return modelInputClone.stockVolatility
 
-
     def treeSize(self):
         return self.modelInput.treeLevels
 

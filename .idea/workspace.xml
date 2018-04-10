@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50be0a39-3c55-4d83-8782-4249770edbb8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/PythonModels.iml" afterPath="$PROJECT_DIR$/.idea/ConvertibleBondModel.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pricer_app.py" afterPath="$PROJECT_DIR$/app/pricer_app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/convertible_bond_tree.py" afterPath="$PROJECT_DIR$/models/convertible_bond_tree.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/viewmodels/viewmodels.py" afterPath="$PROJECT_DIR$/viewmodels/viewmodels.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,8 +44,8 @@
       <file leaf-file-name="convertible_bond_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
+            <state relative-caret-position="1531">
+              <caret line="209" column="25" lean-forward="false" selection-start-line="209" selection-start-column="8" selection-end-line="209" selection-end-column="25" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -55,8 +56,8 @@
       <file leaf-file-name="pricer_app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/pricer_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="126" column="40" lean-forward="true" selection-start-line="126" selection-start-column="40" selection-end-line="126" selection-end-column="40" />
+            <state relative-caret-position="2704">
+              <caret line="153" column="55" lean-forward="true" selection-start-line="153" selection-start-column="55" selection-end-line="153" selection-end-column="55" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -77,8 +78,8 @@
       <file leaf-file-name="viewmodels.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/viewmodels/viewmodels.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4242">
-              <caret line="202" column="0" lean-forward="false" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+            <state relative-caret-position="254">
+              <caret line="90" column="33" lean-forward="false" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="33" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -129,8 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lambdaDefault</find>
-      <find>self.tree</find>
       <find>self.tree</find>
       <find>BaseNonTerminateNonDefaultNode</find>
       <find>_buildTerminalNodes</find>
@@ -159,6 +158,8 @@
       <find>ConvertibleBondSensitivityAnalyzer</find>
       <find>zeroCouponRates</find>
       <find>QCheckBox</find>
+      <find>MarketVolatilityViewModel</find>
+      <find>def pric</find>
     </findStrings>
     <replaceStrings>
       <replace>hasLower</replace>
@@ -178,6 +179,7 @@
       <replace>numberToStr</replace>
       <replace>children</replace>
       <replace>PricerWidget</replace>
+      <replace>ImpliedVolatilityViewModel</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -204,9 +206,9 @@
         <option value="$PROJECT_DIR$/models/risk_free_tree.py" />
         <option value="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" />
         <option value="$PROJECT_DIR$/models/data.py" />
-        <option value="$PROJECT_DIR$/viewmodels/viewmodels.py" />
         <option value="$PROJECT_DIR$/models/sensitivity_analyser.py" />
         <option value="$PROJECT_DIR$/models/convertible_bond_tree.py" />
+        <option value="$PROJECT_DIR$/viewmodels/viewmodels.py" />
         <option value="$PROJECT_DIR$/app/pricer_app.py" />
       </list>
     </option>
@@ -233,8 +235,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,10 +247,17 @@
               <item name="ConvertibleBondModel" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ConvertibleBondModel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ConvertibleBondModel" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -521,15 +528,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_tests - 2018.04.08 at 21h 39m 14s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.08 at 21h 52m 46s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_tests - 2018.04.08 at 22h 06m 03s.xml">
-      <configuration name="Nosetests in tests" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_in_tests - 2018.04.08 at 22h 09m 07s.xml">
       <configuration name="Nosetests in tests" configurationId="tests" />
     </history-entry>
@@ -540,6 +538,15 @@
       <configuration name="all tests" configurationId="tests" />
     </history-entry>
     <history-entry file="all_tests - 2018.04.08 at 22h 13m 05s.xml">
+      <configuration name="all tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="all_tests - 2018.04.08 at 23h 22m 42s.xml">
+      <configuration name="all tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="all_tests - 2018.04.08 at 23h 28m 02s.xml">
+      <configuration name="all tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="all_tests - 2018.04.09 at 22h 42m 47s.xml">
       <configuration name="all tests" configurationId="tests" />
     </history-entry>
     <history-entry file="tests_in_test_convertible_bond_tree_py - 2018.04.08 at 22h 10m 17s.xml">
@@ -565,16 +572,16 @@
     <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23899034" sideWeight="0.49448818" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24221267" sideWeight="0.49448818" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4675615" sideWeight="0.24812031" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.4677766" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.4763695" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43064877" sideWeight="0.575725" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.4677766" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32997763" sideWeight="0.48711064" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4675615" sideWeight="0.7518797" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5055118" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4675615" sideWeight="0.7518797" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -608,7 +615,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/viewmodels/viewmodels.py</url>
-          <line>202</line>
+          <line>219</line>
           <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1033,16 +1040,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/viewmodels/viewmodels.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4242">
-          <caret line="202" column="0" lean-forward="false" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/sensitivity_analyser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
@@ -1051,10 +1048,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/viewmodels/viewmodels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="90" column="33" lean-forward="false" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
+        <state relative-caret-position="1531">
+          <caret line="209" column="25" lean-forward="false" selection-start-line="209" selection-start-column="8" selection-end-line="209" selection-end-column="25" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
@@ -1063,8 +1070,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/pricer_app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="126" column="40" lean-forward="true" selection-start-line="126" selection-start-column="40" selection-end-line="126" selection-end-column="40" />
+        <state relative-caret-position="2704">
+          <caret line="153" column="55" lean-forward="true" selection-start-line="153" selection-start-column="55" selection-end-line="153" selection-end-column="55" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
