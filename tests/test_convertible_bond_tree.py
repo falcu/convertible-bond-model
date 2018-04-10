@@ -52,3 +52,10 @@ class TestConvertibleBondTree(TestBase):
         convertibleBondModel = underTest.ConvertibleBondTree(modelInput)
 
         self.assertAlmostEqual( expectedImpliedVolatiltiy, convertibleBondModel.impliedVolatility(marketPrice), delta=0.00001)
+
+    def test_chambersPaperBond_ForcedTypeConvertibleBond(self):
+        modelInput = model_data.chambersPaperRealExampleInput( bondType=underTest.ConvertibleBondType.FORCED)
+
+        convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
+
+        self.assertAlmostEqual( 76.698661, convertibleBondModel.priceBond(), delta=0.0001)

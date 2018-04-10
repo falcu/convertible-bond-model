@@ -1,7 +1,8 @@
-from models.convertible_bond_tree import Feature, FeatureSchedule, ConvertibleBondModelInput
+from models.convertible_bond_tree import Feature, FeatureSchedule, ConvertibleBondModelInput, ConvertibleBondType
 
 
-def chambersPaperRealExampleInput( irStockCorrelation=-0.1, stockPrice=15.006, conversionFactor=5.07524):
+def chambersPaperRealExampleInput( irStockCorrelation=-0.1, stockPrice=15.006, conversionFactor=5.07524,
+                                   bondType=ConvertibleBondType.CLASSIC):
     zeroCouponRates = [0.05969, 0.06209, 0.06373, 0.06455, 0.06504, 0.06554]
     irVolatility = 0.1
     deltaTime = 1.0
@@ -20,7 +21,7 @@ def chambersPaperRealExampleInput( irStockCorrelation=-0.1, stockPrice=15.006, c
     return ConvertibleBondModelInput(zeroCouponRates, irVolatility, deltaTime, faceValue, riskyZeroCoupons,
                                      recovery,
                                      initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor,
-                                     featureSchedule, time)
+                                     featureSchedule, time, bondType=bondType)
 
 def chambersPaperSimpleExampleInput():
     zeroCouponRates = [0.1, 0.1, 0.1]

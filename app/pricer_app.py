@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QTabWidget, QLabel, QComboBox, QPushButton, QGridLayout,
-    QLineEdit, QApplication, QVBoxLayout, QHBoxLayout, QListWidget, QCheckBox)
+    QLineEdit, QApplication, QVBoxLayout, QHBoxLayout, QListWidget, QCheckBox, QScrollBar)
 
 from PyQt5.QtGui import QDoubleValidator
 from viewmodels.viewmodels import ConvertibleBondViewModel, SensitivityAnalyzerViewModel
@@ -53,6 +53,7 @@ class PricerWidget(QWidget):
 
         inputs = [self._makePriceBondWidget(),
                   self._makeImpliedVolatilityWidget(),
+                  self._makeComboBoxWidget(self.convertibleBondViewModel.bondTypeViewModel),
                   self._makeLineEditWidget(self.convertibleBondViewModel.timeViewModel, 'Periodos'),
                   self._makeLineEditWidget(self.convertibleBondViewModel.deltaTimeViewModel, 'Delta T'),
                   self._makeLineEditWidget(self.convertibleBondViewModel.irVolatilityViewModel,'Volatilidad Tasa de Interes'),

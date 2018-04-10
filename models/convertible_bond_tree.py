@@ -7,6 +7,7 @@ from collections import deque
 from copy import copy
 from scipy.optimize import fsolve
 from abc import ABC, abstractmethod
+from enum import Enum, auto
 
 class NodeId:
     def __init__(self, level, index):
@@ -24,11 +25,48 @@ class BaseNode(Node):
     def isSolved(self):
         return True
 
-    def _conversionValue(self):
+    def conversionValue(self):
         return self.modelInput.conversionFactor * self.stockPrice()
 
-    def _bondFaceValue(self):
+    def bondFaceValue(self):
         return self.modelInput.faceValue
+
+    def valueProviderFactory(self):
+        return NullValueProviderFactory( self )
+
+    def value(self):
+        return self.valueProviderFactory().makeProvider().value()
+
+
+class NodeValueProvider(ABC):
+    def __init__(self, node):
+        self.node = node
+
+    @abstractmethod
+    def value(self):
+        pass
+
+class NullProvider( NodeValueProvider ):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def value(self):
+        return self.node.value()
+
+class NodeValueProviderFactory(ABC):
+    def __init__(self, node):
+        self.node = node
+
+    @abstractmethod
+    def makeProvider(self):
+        pass
+
+class NullValueProviderFactory(NodeValueProviderFactory):
+    def __init__(self, node):
+        super().__init__(node)
+
+    def makeProvider(self):
+        return NullProvider( self.node )
 
 class PathProbabilityProvider(ABC):
     def __init__(self, node):
@@ -75,11 +113,44 @@ class TerminateNonDefaultNode(BaseNode):
     def __init__(self, modelInput, stockPrice=0):
         super().__init__(modelInput,stockPrice)
 
-    def value(self):
-        return np.max([self._conversionValue(), self._bondFaceValue()])
+    def valueProviderFactory(self):
+        return TerminateNonDefaultValueFactory(self)
 
     def hasChilds(self):
         return False
+
+class TerminateNonDefaultValueClassicProvider(NodeValueProvider):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def value(self):
+        return np.max([self.node.conversionValue(), self.node.bondFaceValue()])
+
+class TerminateNonDefaultValueForcedProvider(NodeValueProvider):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def value(self):
+        return self.node.conversionValue()
+
+class TerminateNonDefaultValueCoCoProvider(NodeValueProvider):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def value(self):
+        return np.min([self.node.conversionValue(), self.node.bondFaceValue()])
+
+class TerminateNonDefaultValueFactory(NodeValueProviderFactory):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def makeProvider(self):
+        if self.node.modelInput.bondType == ConvertibleBondType.CLASSIC:
+            return TerminateNonDefaultValueClassicProvider( self.node )
+        elif self.node.modelInput.bondType == ConvertibleBondType.FORCED:
+            return TerminateNonDefaultValueForcedProvider(self.node)
+        elif self.node.modelInput.bondType == ConvertibleBondType.COCO:
+            return TerminateNonDefaultValueCoCoProvider(self.node)
 
 class DefaultNode(BaseNode):
     def __init__(self, modelInput, ):
@@ -88,8 +159,22 @@ class DefaultNode(BaseNode):
     def hasChilds(self):
         return False
 
+    def valueProviderFactory(self):
+        return DefaultNodeValueFactory(self)
+
+class DefaultNodeValueClassicProvider(NodeValueProvider):
+    def __init__(self, node):
+        super().__init__( node )
+
     def value(self):
-        return self.modelInput.faceValue * self.modelInput.recovery
+        return self.node.modelInput.faceValue * self.node.modelInput.recovery
+
+class DefaultNodeValueFactory(NodeValueProviderFactory):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def makeProvider(self):
+        return DefaultNodeValueClassicProvider( self.node )
 
 class IntermediateNode(BaseNode):
     def __init__(self, modelInput, defaultProbability=None, rate=0, stockPrice=0, children=None, feature=None, pathProbProvider=None, nodeId=None ):
@@ -119,9 +204,8 @@ class IntermediateNode(BaseNode):
     def rate(self):
         return self._rate
 
-    def value(self):
-        return np.max([np.min([self._rollBackValue(),self.feature.callValue()]), self._conversionValue(),
-                      self.feature.putValue()])
+    def valueProviderFactory(self):
+        return IntermediateNodeValueFactory(self)
 
     def hasChilds(self):
         return True
@@ -129,7 +213,7 @@ class IntermediateNode(BaseNode):
     def addChild(self, aChild):
         self.children.append( aChild )
 
-    def _rollBackValue(self):
+    def rollBackValue(self):
         nodesValues = list(map( lambda aNode: aNode.value(), self.children))
         expectedValue = np.dot(self.pathProbProvider.pathsProbabilities(), nodesValues )
 
@@ -137,6 +221,32 @@ class IntermediateNode(BaseNode):
 
     def _discountFactor(self):
         return np.exp(-self.rate()*self.modelInput.deltaTime)
+
+class IntermediateNodeClassicProvider(NodeValueProvider):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def value(self):
+        return np.max([np.min([self.node.rollBackValue(),self.node.feature.callValue()]), self.node.conversionValue(),
+                      self.node.feature.putValue()])
+
+class IntermediateNodeCocoProvider(NodeValueProvider):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def value(self):
+        return np.max([np.min([self.node.rollBackValue(),self.node.feature.callValue(), self.node.conversionValue()]),
+                      self.node.feature.putValue()])
+
+class IntermediateNodeValueFactory(NodeValueProviderFactory):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def makeProvider(self):
+        if self.node.modelInput.bondType == ConvertibleBondType.CLASSIC or self.node.modelInput.bondType == ConvertibleBondType.FORCED:
+            return IntermediateNodeClassicProvider( self.node )
+        elif self.node.modelInput.bondType == ConvertibleBondType.COCO:
+            return IntermediateNodeCocoProvider(self.node)
 
 class Feature:
     def __init__(self,callValue=np.inf, putValue=0.0):
@@ -166,10 +276,15 @@ class NullFeature(Feature):
     def __init__(self):
         super().__init__(np.inf, 0.0)
 
+class ConvertibleBondType(Enum):
+    CLASSIC = auto()
+    FORCED  = auto()
+    COCO    = auto()
+
 class ConvertibleBondModelInput:
     def __init__(self, zeroCouponRates, irVolatility, deltaTime, faceValue, riskyZeroCoupons, recovery,
                  initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time,
-                 irRateMovement=0.0):
+                 irRateMovement=0.0, bondType=ConvertibleBondType.CLASSIC):
         self.zeroCouponRates = zeroCouponRates
         self.irVolatility = irVolatility
         self.deltaTime = deltaTime
@@ -184,6 +299,7 @@ class ConvertibleBondModelInput:
         self.time = time
         self.treeLevels = int(time+1/deltaTime)
         self.irRateMovement = irRateMovement
+        self.bondType = bondType
 
 class ConvertibleBondTree(BaseTree):
     def __init__(self, modelInput):
@@ -200,6 +316,7 @@ class ConvertibleBondTree(BaseTree):
         modelInputClone = copy(self.modelInput)
         newModel = ConvertibleBondTree(modelInputClone)
         modelInputClone.conversionFactor = 0
+        modelInputClone.bondType = ConvertibleBondType.CLASSIC
 
         return newModel.solve()
 

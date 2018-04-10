@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from models.convertible_bond_tree import FeatureSchedule, ConvertibleBondModelInput, ConvertibleBondTree
+from models.convertible_bond_tree import FeatureSchedule, ConvertibleBondModelInput, ConvertibleBondTree\
+                                        , ConvertibleBondType as BondType
 from models.sensitivity_analyser import ConvertibleBondSensitivityAnalyzer, Plotter
 import numpy as np
 
@@ -109,11 +110,12 @@ class OptionSelectionViewModel(ViewModel):
 
     def update(self, aValue):
         self.optionsProvider.clear()
+        items = self.convertTo(aValue)
         self.optionsProvider.addItems( self.convertTo(aValue) )
-        self._selectedOption = aValue[0]
+        self._selectedOption = items[0]
 
     def getInput(self):
-        return self._selectedOption
+        return self.convertFrom( self._selectedOption )
 
     def onOptionSelected(self):
         self._selectedOption = self.optionsProvider.currentText()
@@ -122,7 +124,8 @@ class ConvertibleBondViewModel(ViewModel):
     def __init__(self, timeViewModel=None, riskFreeViewModel=None, irVolatilityViewModel=None, deltaTimeViewModel=None,
                  faceValueViewModel=None, riskyZeroCouponsViewModel=None, recoveryViewModel=None,
                  initialStockPriceViewModel=None,stockVolatilityViewModel=None, irStockCorrelationViewModel=None,
-                 conversionFactorViewModel=None, featureScheduleViewModel=None, impliedVolatilityViewodel=None):
+                 conversionFactorViewModel=None, featureScheduleViewModel=None, bondTypeViewModel=None,
+                 impliedVolatilityViewodel=None):
         super().__init__()
         self.timeViewModel                  = timeViewModel or TextViewModel( convertFrom=Converters.strToInt )
         self.riskFreeViewModel              = riskFreeViewModel or ListViewModel()
@@ -137,6 +140,8 @@ class ConvertibleBondViewModel(ViewModel):
         self.conversionFactorViewModel      = conversionFactorViewModel or TextViewModel()
         self.featureScheduleViewModel       = featureScheduleViewModel or ListViewModel( convertTo=Converters.featureScheduleToStrList,
                                                                                  convertFrom=Converters.strListToFeature)
+        self.bondTypeViewModel              = bondTypeViewModel or OptionSelectionViewModel(convertTo=Converters.bondTypeStr,
+                                                                                            convertFrom=Converters.strToBondType)
         self.bondPriceViewModel             = TextViewModel()
         self.impliedVolatilityViewodel      = impliedVolatilityViewodel or ImpliedVolatilityViewModel()
         self.model                          = None
@@ -155,6 +160,7 @@ class ConvertibleBondViewModel(ViewModel):
         self.irStockCorrelationViewModel.update( aValue.irStockCorrelation )
         self.conversionFactorViewModel.update( aValue.conversionFactor )
         self.featureScheduleViewModel.update( aValue.featureSchedule )
+        self.bondTypeViewModel.update( '' )
 
     def getInput(self):
         time                = self.timeViewModel.getInput()
@@ -169,9 +175,11 @@ class ConvertibleBondViewModel(ViewModel):
         irStockCorrelation  = self.irStockCorrelationViewModel.getInput()
         conversionFactor    = self.conversionFactorViewModel.getInput()
         featureSchedule     = self.featureScheduleViewModel.getInput()
+        bondType            = self.bondTypeViewModel.getInput()
 
         return ConvertibleBondModelInput( zeroCouponRates, irVolatility, deltaTime, faceValue, riskyZeroCoupons, recovery,
-                 initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time)
+                 initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time,
+                                          bondType=bondType)
 
     def onPriceBondClicked(self):
         self.bondPriceViewModel.update(0.0)
@@ -294,3 +302,12 @@ class Converters:
             featureSchedule.addFeature( period, callValue=callValue, putValue=putValue)
 
         return featureSchedule
+
+    @staticmethod
+    def bondTypeStr(value):
+        return ['Classic', 'Forced', 'Coco']
+    @staticmethod
+    def strToBondType(value):
+        conversion = {'Classic':BondType.CLASSIC, 'Forced':BondType.FORCED,
+                      'Coco':BondType.COCO}
+        return conversion[value]
