@@ -71,3 +71,10 @@ class TestConvertibleBondTree(TestBase):
         convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
 
         self.assertAlmostEqual( convertibleBondModel.priceBondWithNoConversion(), convertibleBondModel.priceBond(), delta=0.0001)
+
+    def test_chambersPaperBond_noConversionOptionBond(self):
+        modelInput = model_data.chambersPaperRealExampleInput()
+
+        convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
+
+        self.assertAlmostEqual(  66.123511 , convertibleBondModel.priceBondWithNoConversion(), delta=0.0001)

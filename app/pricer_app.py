@@ -31,28 +31,40 @@ class PricerWidget(QWidget):
         self.analyzerViewModel = analyzerViewModel
         self.initUI()
 
+    def updateToChambersInput(self):
+        self.convertibleBondViewModel.update(model_data.chambersPaperRealExampleInput())
+
     def initUI(self):
         self._createTabs()
         self._setPricerTab()
+        self._setInputTab()
         self._setAnalyzeTab()
 
     def _createTabs(self):
         self.layout = QVBoxLayout(self)
         self.tabs = QTabWidget()
-        self.tabModel= QWidget()
+        self.tabPricer = QWidget()
+        self.tabInput= QWidget()
         self.tabAnalyze = QWidget()
         self.tabs.resize(300, 200)
-        self.tabs.addTab(self.tabModel, "Pricer")
+        self.tabs.addTab(self.tabPricer, "Pricer")
+        self.tabs.addTab(self.tabInput, "Input")
         self.tabs.addTab(self.tabAnalyze, "Analizador")
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
 
     def _setPricerTab(self):
-        layout = QGridLayout(self.tabModel)
-        self.tabModel.setLayout(layout)
+        childWidgets = [self._makePriceBondWidget(), self._makeImpliedVolatilityWidget()]
+        parentWidget = self._makeContainerWidget(QVBoxLayout, childWidgets, alignment=qtCore.Qt.AlignTop, parent=self.tabPricer)
+        layout = QGridLayout(self.tabPricer)
+        self.tabPricer.setLayout(layout)
+        layout.addWidget(parentWidget)
 
-        inputs = [self._makePriceBondWidget(),
-                  self._makeImpliedVolatilityWidget(),
+    def _setInputTab(self):
+        layout = QGridLayout(self.tabInput)
+        self.tabInput.setLayout(layout)
+
+        inputs = [self._updateToChambersInputWidget(),
                   self._makeComboBoxWidget(self.convertibleBondViewModel.bondTypeViewModel),
                   self._makeLineEditWidget(self.convertibleBondViewModel.timeViewModel, 'Periodos'),
                   self._makeLineEditWidget(self.convertibleBondViewModel.deltaTimeViewModel, 'Delta T'),
@@ -92,6 +104,13 @@ class PricerWidget(QWidget):
 
         return self._makeContainerWidget(QHBoxLayout,
                       [inputMarketPriceWidget,showImpliedVolatilityWidget,computeImpliedVolatilityButton], alignment=qtCore.Qt.AlignLeft)
+
+    def _updateToChambersInputWidget(self):
+        updateToChambersInput = QPushButton(text='Chamber Input')
+        updateToChambersInput.clicked[bool].connect(
+            lambda: self.updateToChambersInput())
+
+        return updateToChambersInput
 
     def _makeContainerWidget(self, LayoutClass, childWidgets,alignment=None, parent=None, containerWidget=None):
         containerWidget = containerWidget or QWidget( parent or self )
@@ -164,6 +183,6 @@ if __name__ == '__main__':
     analyzerViewModel = SensitivityAnalyzerViewModel( convertibleBondViewModel )
     app = QApplication(sys.argv)
     ex = App(convertibleBondViewModel, analyzerViewModel)
-    convertibleBondViewModel.update( model_data.chambersPaperRealExampleInput())
+    ex.pricerWidget.updateToChambersInput()
     analyzerViewModel.update({'options':['initialStockPrice','irVolatility','recovery','stockVolatility','irStockCorrelation','conversionFactor','irRateMovement'], 'from':0.0, 'to':30.0, 'points':10})
     sys.exit(app.exec_())

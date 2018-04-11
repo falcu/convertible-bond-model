@@ -140,6 +140,13 @@ class TerminateNonDefaultValueCoCoProvider(NodeValueProvider):
     def value(self):
         return np.min([self.node.conversionValue(), self.node.bondFaceValue()])
 
+class TerminateNonDefaultValueNoConversionProvider(NodeValueProvider):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def value(self):
+        return self.node.bondFaceValue()
+
 class TerminateNonDefaultValueFactory(NodeValueProviderFactory):
     def __init__(self, node):
         super().__init__( node )
@@ -151,6 +158,8 @@ class TerminateNonDefaultValueFactory(NodeValueProviderFactory):
             return TerminateNonDefaultValueForcedProvider(self.node)
         elif self.node.modelInput.bondType == ConvertibleBondType.COCO:
             return TerminateNonDefaultValueCoCoProvider(self.node)
+        elif self.node.modelInput.bondType == ConvertibleBondType.NO_CONVERSION:
+            return TerminateNonDefaultValueNoConversionProvider(self.node)
 
 class DefaultNode(BaseNode):
     def __init__(self, modelInput, ):
@@ -238,6 +247,14 @@ class IntermediateNodeCocoProvider(NodeValueProvider):
         return np.max([np.min([self.node.rollBackValue(),self.node.feature.callValue(), self.node.conversionValue()]),
                       self.node.feature.putValue()])
 
+class IntermediateNodeNoConversionProvider(NodeValueProvider):
+    def __init__(self, node):
+        super().__init__( node )
+
+    def value(self):
+        return np.max([np.min([self.node.rollBackValue(),self.node.feature.callValue()]),
+                      self.node.feature.putValue()])
+
 class IntermediateNodeValueFactory(NodeValueProviderFactory):
     def __init__(self, node):
         super().__init__( node )
@@ -247,7 +264,8 @@ class IntermediateNodeValueFactory(NodeValueProviderFactory):
             return IntermediateNodeClassicProvider( self.node )
         elif self.node.modelInput.bondType == ConvertibleBondType.COCO:
             return IntermediateNodeCocoProvider(self.node)
-
+        elif self.node.modelInput.bondType == ConvertibleBondType.NO_CONVERSION:
+            return IntermediateNodeNoConversionProvider(self.node)
 class Feature:
     def __init__(self,callValue=np.inf, putValue=0.0):
         self._callValue = callValue
@@ -277,9 +295,10 @@ class NullFeature(Feature):
         super().__init__(np.inf, 0.0)
 
 class ConvertibleBondType(Enum):
-    CLASSIC = auto()
-    FORCED  = auto()
-    COCO    = auto()
+    CLASSIC         = auto()
+    FORCED          = auto()
+    COCO            = auto()
+    NO_CONVERSION   = auto()
 
 class ConvertibleBondModelInput:
     def __init__(self, zeroCouponRates, irVolatility, deltaTime, faceValue, riskyZeroCoupons, recovery,
@@ -315,8 +334,7 @@ class ConvertibleBondTree(BaseTree):
     def priceBondWithNoConversion(self):
         modelInputClone = copy(self.modelInput)
         newModel = ConvertibleBondTree(modelInputClone)
-        modelInputClone.conversionFactor = 0
-        modelInputClone.bondType = ConvertibleBondType.CLASSIC
+        modelInputClone.bondType = ConvertibleBondType.NO_CONVERSION
 
         return newModel.solve()
 

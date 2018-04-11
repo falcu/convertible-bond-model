@@ -142,8 +142,9 @@ class ConvertibleBondViewModel(ViewModel):
                                                                                  convertFrom=Converters.strListToFeature)
         self.bondTypeViewModel              = bondTypeViewModel or OptionSelectionViewModel(convertTo=Converters.bondTypeStr,
                                                                                             convertFrom=Converters.strToBondType)
-        self.bondPriceViewModel             = TextViewModel()
-        self.impliedVolatilityViewodel      = impliedVolatilityViewodel or ImpliedVolatilityViewModel()
+        self.bondPriceViewModel             = TextViewModel(convertTo=Converters.numberToStrRounded)
+        self.impliedVolatilityViewodel      = impliedVolatilityViewodel \
+                                              or ImpliedVolatilityViewModel(outputViewModel=TextViewModel(convertTo=Converters.numberToStrRounded))
         self.model                          = None
 
 
@@ -270,6 +271,10 @@ class Converters:
         return str(value)
 
     @staticmethod
+    def numberToStrRounded(value):
+        return str(round(value,5))
+
+    @staticmethod
     def strToInt(value):
         return int(value)
 
@@ -305,9 +310,9 @@ class Converters:
 
     @staticmethod
     def bondTypeStr(value):
-        return ['Classic', 'Forced', 'Coco']
+        return ['Classic', 'Forced', 'Coco', 'No Conversion']
     @staticmethod
     def strToBondType(value):
         conversion = {'Classic':BondType.CLASSIC, 'Forced':BondType.FORCED,
-                      'Coco':BondType.COCO}
+                      'Coco':BondType.COCO, 'No Conversion':BondType.NO_CONVERSION}
         return conversion[value]
