@@ -36,13 +36,11 @@ class TestConvertibleBondTree(TestBase):
         self.assertAlmostEqual( 10000000, convertibleBondModel.priceBond(), delta=0.5)
 
     def test_priceBond_bondPriceConvergesToBondNonConvertiblePriceWhenStockIsLow(self):
-        modelInputNonConvertible = model_data.chambersPaperRealExampleInput(stockPrice=1, conversionFactor=0)
         modelInput = model_data.chambersPaperRealExampleInput(stockPrice=5, conversionFactor=2)
-        nonConvertiblePrice = underTest.ConvertibleBondTree( modelInputNonConvertible ).priceBond()
 
         convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
 
-        self.assertAlmostEqual( nonConvertiblePrice, convertibleBondModel.priceBond(), delta=0.001)
+        self.assertAlmostEqual( convertibleBondModel.priceBondWithNoConversion(), convertibleBondModel.priceBond(), delta=0.001)
 
     def test_impliedVolatility_chambersPaper(self):
         modelInput = model_data.chambersPaperRealExampleInput()
@@ -59,3 +57,17 @@ class TestConvertibleBondTree(TestBase):
         convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
 
         self.assertAlmostEqual( 76.698661, convertibleBondModel.priceBond(), delta=0.0001)
+
+    def test_chambersPaperBond_CocoTypeConvertibleBond(self):
+        modelInput = model_data.chambersPaperRealExampleInput( bondType=underTest.ConvertibleBondType.COCO)
+
+        convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
+
+        self.assertAlmostEqual( 46.9815, convertibleBondModel.priceBond(), delta=0.0001)
+
+    def test_chambersPaperBond_cocoBondConvergesToNonConvertiblePriceWhenStockIsHigh(self):
+        modelInput = model_data.chambersPaperRealExampleInput( bondType=underTest.ConvertibleBondType.COCO, stockPrice=1000.0)
+
+        convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
+
+        self.assertAlmostEqual( convertibleBondModel.priceBondWithNoConversion(), convertibleBondModel.priceBond(), delta=0.0001)

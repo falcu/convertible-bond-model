@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50be0a39-3c55-4d83-8782-4249770edbb8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pricer_app.py" afterPath="$PROJECT_DIR$/app/pricer_app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/convertible_bond_tree.py" afterPath="$PROJECT_DIR$/models/convertible_bond_tree.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/data.py" afterPath="$PROJECT_DIR$/models/data.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" afterPath="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/viewmodels/viewmodels.py" afterPath="$PROJECT_DIR$/viewmodels/viewmodels.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="convertible_bond_tree.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="convertible_bond_tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
-              <caret line="318" column="62" lean-forward="false" selection-start-line="318" selection-start-column="62" selection-end-line="318" selection-end-column="62" />
+              <caret line="318" column="62" lean-forward="true" selection-start-line="317" selection-start-column="44" selection-end-line="318" selection-end-column="62" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -88,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_convertible_bond_tree.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_convertible_bond_tree.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_convertible_bond_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="56" column="108" lean-forward="false" selection-start-line="56" selection-start-column="108" selection-end-line="56" selection-end-column="108" />
+            <state relative-caret-position="268">
+              <caret line="67" column="42" lean-forward="false" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -161,8 +157,8 @@
       <find>valueProviderFactory</find>
       <find>bondType</find>
       <find>_rollBackValue</find>
-      <find>TerminateNonDefaultValueAlwaysConvertProvider</find>
       <find>MarketVolatilityViewModel</find>
+      <find>TerminateNonDefaultValueAlwaysConvertProvider</find>
     </findStrings>
     <replaceStrings>
       <replace>hasLower</replace>
@@ -184,8 +180,8 @@
       <replace>PricerWidget</replace>
       <replace>conversionValue</replace>
       <replace>rollBackValue</replace>
-      <replace>TerminateNonDefaultValueForcedProvider</replace>
       <replace>ImpliedVolatilityViewModel</replace>
+      <replace>TerminateNonDefaultValueForcedProvider</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -212,10 +208,10 @@
         <option value="$PROJECT_DIR$/models/risk_free_tree.py" />
         <option value="$PROJECT_DIR$/models/sensitivity_analyser.py" />
         <option value="$PROJECT_DIR$/models/data.py" />
-        <option value="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" />
         <option value="$PROJECT_DIR$/viewmodels/viewmodels.py" />
         <option value="$PROJECT_DIR$/app/pricer_app.py" />
         <option value="$PROJECT_DIR$/models/convertible_bond_tree.py" />
+        <option value="$PROJECT_DIR$/tests/test_convertible_bond_tree.py" />
       </list>
     </option>
   </component>
@@ -294,7 +290,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python tests.all tests">
-    <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_ForcedTypeConvertibleBond" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_CocoTypeConvertibleBond" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -306,10 +302,10 @@
       <module name="ConvertibleBondModel" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_ForcedTypeConvertibleBond&quot;" />
+      <option name="_new_target" value="&quot;test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_CocoTypeConvertibleBond&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
     </configuration>
-    <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperRealExample" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_cocoBondConvergesToNonConvertiblePriceWhenStockIsHigh" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -321,8 +317,23 @@
       <module name="ConvertibleBondModel" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperRealExample&quot;" />
+      <option name="_new_target" value="&quot;test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_cocoBondConvergesToNonConvertiblePriceWhenStockIsHigh&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
+    <configuration name="Nosetests in test_convertible_bond_tree.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ConvertibleBondModel" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_convertible_bond_tree.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -490,35 +501,20 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="tests in test_stock_tree.py" type="tests" factoryName="Nosetests" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ConvertibleBondModel" />
-      <option name="_new_regexPattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_stock_tree.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-    </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python tests.all tests" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.tests in test_stock_tree.py" />
-      <item index="2" class="java.lang.String" itemvalue="Python.pricer_app" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperRealExample" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_ForcedTypeConvertibleBond" />
+      <item index="1" class="java.lang.String" itemvalue="Python.pricer_app" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests in test_convertible_bond_tree.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_CocoTypeConvertibleBond" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_cocoBondConvergesToNonConvertiblePriceWhenStockIsHigh" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python tests.all tests" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pricer_app" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_ForcedTypeConvertibleBond" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_priceBond_ChambersPaperRealExample" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.tests in test_stock_tree.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_cocoBondConvergesToNonConvertiblePriceWhenStockIsHigh" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_CocoTypeConvertibleBond" />
+        <item index="3" class="java.lang.String" itemvalue="Python.pricer_app" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in test_convertible_bond_tree.py" />
       </list>
     </recent_temporary>
   </component>
@@ -539,20 +535,17 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_chambersPaperBond_ForcedTypeConvertibleBond - 2018.04.10 at 00h 30m 05s.xml">
-      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_ForcedTypeConvertibleBond" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_chambersPaperBond_CocoTypeConvertibleBond - 2018.04.10 at 21h 40m 54s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_CocoTypeConvertibleBond" configurationId="tests" />
     </history-entry>
-    <history-entry file="all_tests - 2018.04.10 at 00h 27m 43s.xml">
-      <configuration name="all tests" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_convertible_bond_tree_TestConvertibleBondTree_test_chambersPaperBond_cocoBondConvergesToNonConvertiblePriceWhenStockIsHigh - 2018.04.10 at 21h 41m 53s.xml">
+      <configuration name="Nosetests for test_convertible_bond_tree.TestConvertibleBondTree.test_chambersPaperBond_cocoBondConvergesToNonConvertiblePriceWhenStockIsHigh" configurationId="tests" />
     </history-entry>
-    <history-entry file="all_tests - 2018.04.10 at 00h 31m 09s.xml">
-      <configuration name="all tests" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_convertible_bond_tree_py - 2018.04.10 at 21h 39m 04s.xml">
+      <configuration name="Nosetests in test_convertible_bond_tree.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="all_tests - 2018.04.10 at 00h 31m 40s.xml">
-      <configuration name="all tests" configurationId="tests" />
-    </history-entry>
-    <history-entry file="all_tests - 2018.04.10 at 00h 32m 53s.xml">
-      <configuration name="all tests" configurationId="tests" />
+    <history-entry file="Nosetests_in_test_convertible_bond_tree_py - 2018.04.10 at 21h 39m 39s.xml">
+      <configuration name="Nosetests in test_convertible_bond_tree.py" configurationId="tests" />
     </history-entry>
     <history-entry file="all_tests - 2018.04.10 at 00h 33m 47s.xml">
       <configuration name="all tests" configurationId="tests" />
@@ -567,6 +560,9 @@
       <configuration name="all tests" configurationId="tests" />
     </history-entry>
     <history-entry file="all_tests - 2018.04.10 at 02h 05m 28s.xml">
+      <configuration name="all tests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="all_tests - 2018.04.10 at 21h 42m 19s.xml">
       <configuration name="all tests" configurationId="tests" />
     </history-entry>
   </component>
@@ -1061,16 +1057,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_convertible_bond_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="56" column="108" lean-forward="false" selection-start-line="56" selection-start-column="108" selection-end-line="56" selection-end-column="108" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/pricer_app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2165">
@@ -1094,9 +1080,19 @@
     <entry file="file://$PROJECT_DIR$/models/convertible_bond_tree.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
-          <caret line="318" column="62" lean-forward="false" selection-start-line="318" selection-start-column="62" selection-end-line="318" selection-end-column="62" />
+          <caret line="318" column="62" lean-forward="true" selection-start-line="317" selection-start-column="44" selection-end-line="318" selection-end-column="62" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_convertible_bond_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="67" column="42" lean-forward="false" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
