@@ -331,12 +331,9 @@ class ConvertibleBondTree(BaseTree):
     def priceBond(self):
         return self.solve()
 
-    def priceBondWithNoConversion(self):
-        modelInputClone = copy(self.modelInput)
-        newModel = ConvertibleBondTree(modelInputClone)
-        modelInputClone.bondType = ConvertibleBondType.NO_CONVERSION
-
-        return newModel.solve()
+    def conversionValue(self):
+        self.solve()
+        return self.root.conversionValue()
 
     def clone(self):
         modelInputClone = copy(self.modelInput)

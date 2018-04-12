@@ -162,11 +162,11 @@ class PricerWidget(QWidget):
     def _setAnalyzeTab(self):
         analyzeButton = QPushButton('Graficar')
         analyzeButton.clicked[bool].connect(lambda: self.analyzerViewModel.onAnalyzeClicked())
-        includeNoConversionCheckBox = QCheckBox('Incluir precio sin conversion', self.tabAnalyze)
-        includeNoConversionCheckBox.setTristate(False)
+        includeConversionValueCheckBox = QCheckBox('Incluir valor conversion', self.tabAnalyze)
+        includeConversionValueCheckBox.setTristate(False)
         useNewGraphCheckBox = QCheckBox('En nuevo grafico', self.tabAnalyze)
         useNewGraphCheckBox.setTristate(False)
-        self.analyzerViewModel.includeNoConversionViewModel.checkBox = includeNoConversionCheckBox
+        self.analyzerViewModel.includeConversionValueViewModel.checkBox = includeConversionValueCheckBox
         self.analyzerViewModel.newGraphViewModel.checkBox = useNewGraphCheckBox
         inputWidget = self._makeContainerWidget(QHBoxLayout,
                                     [self._makeLineEditWidget(self.analyzerViewModel.fromViewModel, 'Desde'),
@@ -174,7 +174,7 @@ class PricerWidget(QWidget):
                                      self._makeLineEditWidget(self.analyzerViewModel.numberOfPointsViewModel,
                                                                   'Cantidad Puntos')          ], parent=self.tabAnalyze)
         analyzeOptionsComboBox = self._makeComboBoxWidget(self.analyzerViewModel.optionsViewModel)
-        childWidgets = [analyzeOptionsComboBox, inputWidget, includeNoConversionCheckBox, useNewGraphCheckBox, analyzeButton]
+        childWidgets = [analyzeOptionsComboBox, inputWidget, includeConversionValueCheckBox, useNewGraphCheckBox, analyzeButton]
 
         self._makeContainerWidget(QVBoxLayout,childWidgets,alignment=qtCore.Qt.AlignTop, containerWidget=self.tabAnalyze)
 

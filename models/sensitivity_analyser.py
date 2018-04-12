@@ -29,16 +29,18 @@ class ConvertibleBondSensitivityAnalyzer:
         helper = SensitivityAnalyser(self.convertibleBondModel.modelInput,self.convertibleBondModel.priceBond)
         return helper.analyzeValues( dependentValues, attributeToAnalyze)
 
-    def analyzeBondPriceNoConversion(self, attributeToAnalyze, dependentValues):
-        helper = SensitivityAnalyser(self.convertibleBondModel.modelInput, self.convertibleBondModel.priceBondWithNoConversion)
+    def analyzeBondConversionValue(self, attributeToAnalyze, dependentValues):
+        helper = SensitivityAnalyser(self.convertibleBondModel.modelInput, self.convertibleBondModel.conversionValue)
         return helper.analyzeValues(dependentValues, attributeToAnalyze)
 
 class Plotter:
     def __init__(self, title='Convertible Bond'):
-        self.figure = None
-        self._plot = None
+        self._lastFigure = None
+        self._lastPlot = None
         self.title = title
         self.newGraph = 1
+        self._availableColors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
+        self._currentColor = 0
 
     def plot(self, dataToPlot, newGraph=True):
         '''dataToPlot is a list of dictionaries'''
@@ -46,26 +48,27 @@ class Plotter:
         for aData in dataToPlot:
             xValues = aData['x']
             yValues = aData['y']
-            color   = '-{}'.format( aData.get('color','r') )
+            color   = '-{}'.format( self._nextColor() )
             label   = aData.get('label','')
             thePlot.plot( xValues, yValues, color, label=label)
             thePlot.legend(loc='upper left')
 
         figure.show()
+        plt.pause(0.05)
+
+    def _nextColor(self):
+        color = self._availableColors[self._currentColor % len(self._availableColors)]
+        self._currentColor += 1
+
+        return color
 
     def _initializePlot(self, newGraph):
-        if newGraph:
-            fig = plt.figure('{} New Graph {}'.format(self.title, self.newGraph))
-            thePlot = fig.add_subplot(111)
+        if newGraph or not self._lastFigure:
+            self._currentColor = 0
+            self._lastFigure = plt.figure('{} New Graph {}'.format(self.title, self.newGraph))
+            self._lastPlot = self._lastFigure.add_subplot(111)
             self.newGraph += 1
-            return fig, thePlot
-        else:
-            if self.figure:
-                plt.close( self.figure )
-            self.figure = plt.figure(self.title)
-            self._plot = self.figure.add_subplot(111)
-
-            return self.figure, self._plot
+        return self._lastFigure, self._lastPlot
 
 
 

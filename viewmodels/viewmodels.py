@@ -200,36 +200,37 @@ class ConvertibleBondViewModel(ViewModel):
 
 class SensitivityAnalyzerViewModel(ViewModel):
     def __init__(self, convertibleBondViewModel, optionsViewModel=None, fromViewModel=None,
-                 toViewModel=None, numberOfPointsViewModel=None, includeNoConversionViewModel=None,newGraphViewModel=None):
+                 toViewModel=None, numberOfPointsViewModel=None, includeConversionValueViewModel=None,newGraphViewModel=None):
         self.convertibleBondViewModel = convertibleBondViewModel
         self.optionsViewModel = optionsViewModel or OptionSelectionViewModel()
         self.fromViewModel = fromViewModel or TextViewModel()
         self.toViewModel = toViewModel or TextViewModel()
         self.numberOfPointsViewModel = numberOfPointsViewModel or TextViewModel( convertFrom=Converters.strToInt )
         self.plotter = Plotter()
-        self.includeNoConversionViewModel = includeNoConversionViewModel or CheckBoxViewModel()
+        self.includeConversionValueViewModel = includeConversionValueViewModel or CheckBoxViewModel()
         self.newGraphViewModel = newGraphViewModel or CheckBoxViewModel()
 
     def onAnalyzeClicked(self):
         data = self.getInput()
         self.convertibleBondViewModel.setModel()
         model = self.convertibleBondViewModel.model.clone()
+        bondType = Converters.bondTypeToStr( model.modelInput.bondType )
         analyzer = ConvertibleBondSensitivityAnalyzer( model )
         selectedAtribute = data['selected_option']
         dependentValues = np.linspace(data['from'], data['to'], data['points'])
         independentValues = analyzer.analyzeBondPrice(selectedAtribute, dependentValues)
-        dataToPlot = [{'x':dependentValues, 'y':independentValues, 'color':'r',
-                           'label':'Bond Price({})'.format(selectedAtribute)}]
+        dataToPlot = [{'x':dependentValues, 'y':independentValues,
+                           'label':'Bond {}({})'.format(bondType, selectedAtribute)}]
 
-        if self._includeNoConversionPrice():
-            independentValues = analyzer.analyzeBondPriceNoConversion(selectedAtribute, dependentValues)
-            dataToPlot.append({'x':dependentValues, 'y':independentValues, 'color':'b',
-                           'label':'Bond No Conversion Price({})'.format(selectedAtribute)})
+        if self._includeConversionValue():
+            independentValues = analyzer.analyzeBondConversionValue(selectedAtribute, dependentValues)
+            dataToPlot.append({'x':dependentValues, 'y':independentValues,
+                           'label':'Conversion Value'})
 
         self.plotter.plot(dataToPlot, newGraph=self._useNewGraph())
 
-    def _includeNoConversionPrice(self):
-        return self.includeNoConversionViewModel.getInput()
+    def _includeConversionValue(self):
+        return self.includeConversionValueViewModel.getInput()
 
     def _useNewGraph(self):
         return self.newGraphViewModel.getInput()
@@ -315,4 +316,10 @@ class Converters:
     def strToBondType(value):
         conversion = {'Classic':BondType.CLASSIC, 'Forced':BondType.FORCED,
                       'Coco':BondType.COCO, 'No Conversion':BondType.NO_CONVERSION}
+        return conversion[value]
+
+    @staticmethod
+    def bondTypeToStr(value):
+        conversion = {BondType.CLASSIC:'Classic', BondType.FORCED:'Forced',
+                      BondType.COCO:'Coco', BondType.NO_CONVERSION:'No Conversion'}
         return conversion[value]

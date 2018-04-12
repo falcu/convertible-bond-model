@@ -37,10 +37,11 @@ class TestConvertibleBondTree(TestBase):
 
     def test_priceBond_bondPriceConvergesToBondNonConvertiblePriceWhenStockIsLow(self):
         modelInput = model_data.chambersPaperRealExampleInput(stockPrice=5, conversionFactor=2)
-
         convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
+        noConvesionBond = convertibleBondModel.clone()
+        noConvesionBond.modelInput.bondType = underTest.ConvertibleBondType.NO_CONVERSION
 
-        self.assertAlmostEqual( convertibleBondModel.priceBondWithNoConversion(), convertibleBondModel.priceBond(), delta=0.001)
+        self.assertAlmostEqual( noConvesionBond.priceBond(), convertibleBondModel.priceBond(), delta=0.001)
 
     def test_impliedVolatility_chambersPaper(self):
         modelInput = model_data.chambersPaperRealExampleInput()
@@ -67,14 +68,15 @@ class TestConvertibleBondTree(TestBase):
 
     def test_chambersPaperBond_cocoBondConvergesToNonConvertiblePriceWhenStockIsHigh(self):
         modelInput = model_data.chambersPaperRealExampleInput( bondType=underTest.ConvertibleBondType.COCO, stockPrice=1000.0)
-
         convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
+        noConvesionBond = convertibleBondModel.clone()
+        noConvesionBond.modelInput.bondType = underTest.ConvertibleBondType.NO_CONVERSION
 
-        self.assertAlmostEqual( convertibleBondModel.priceBondWithNoConversion(), convertibleBondModel.priceBond(), delta=0.0001)
+        self.assertAlmostEqual( noConvesionBond.priceBond(), convertibleBondModel.priceBond(), delta=0.0001)
 
     def test_chambersPaperBond_noConversionOptionBond(self):
-        modelInput = model_data.chambersPaperRealExampleInput()
+        modelInput = model_data.chambersPaperRealExampleInput( bondType=underTest.ConvertibleBondType.NO_CONVERSION )
 
         convertibleBondModel = underTest.ConvertibleBondTree( modelInput )
 
-        self.assertAlmostEqual(  66.123511 , convertibleBondModel.priceBondWithNoConversion(), delta=0.0001)
+        self.assertAlmostEqual(  66.123511 , convertibleBondModel.priceBond(), delta=0.0001)
