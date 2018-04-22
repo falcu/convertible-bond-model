@@ -1,7 +1,8 @@
 from collections import deque
 import numpy as np
 from scipy.optimize import fsolve
-from models.tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
+from models.tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree, DiscreteModelInput
+from copy import copy
 
 
 class RateNode(Node):
@@ -80,15 +81,60 @@ class RootTreeNode(LowestRatePriceNode):
     def __init__(self, upperNode=None, lowerNode=None, parent=None, terminateValue=1, fixedRate=1.5 ):
         super().__init__(upperNode, lowerNode, parent,fixedRate, terminateValue)
 
+class RiskFreeModelInput(DiscreteModelInput):
+    def __init__(self, zeroCouponRates, volatility, faceValue, deltaTime, time, rateMovement=0.0):
+        super().__init__( deltaTime, time)
+        self._zeroCouponRates = zeroCouponRates
+        self._volatility      = volatility
+        self._faceValue = faceValue
+        self._rateMovement = rateMovement
+
+    @staticmethod
+    def makeModelInput(zeroCouponRates, volatility, faceValue, deltaTime, time, rateMovement=0.0):
+        return RiskFreeModelInput(zeroCouponRates, volatility, faceValue, deltaTime, time,rateMovement=rateMovement)
+
+    def clone(self):
+        return copy(self)
+
+    @property
+    def zeroCouponRates(self):
+        rateMov = self.rateMovement / 10000.0
+        return [rate+rateMov for rate in  self._zeroCouponRates]
+
+    @zeroCouponRates.setter
+    def zeroCouponRates(self, value):
+        self._zeroCouponRates = value
+
+    @property
+    def volatility(self):
+        return self._volatility
+
+    @volatility.setter
+    def volatility(self, value):
+        self._volatility = value
+
+    @property
+    def faceValue (self):
+        return self._faceValue
+
+    @faceValue.setter
+    def faceValue (self, value):
+        self._faceValue = value
+
+    @property
+    def rateMovement (self):
+        return self._rateMovement
+
+    @rateMovement.setter
+    def rateMovement (self, value):
+        self._rateMovement = value
+
 class RiskFreeTree(BaseBinomialTree):
     #Ho-Lee log normal model implementation
 
-    def __init__(self, zeroCouponRates, volatility, deltaTime, faceValue):
+    def __init__(self, modelInput):
         super().__init__()
-        self.zeroCouponRates = zeroCouponRates
-        self.volatility = volatility
-        self.deltaTime = deltaTime
-        self.faceValue = faceValue
+        self.modelInput = modelInput
 
     def _postBuildTree(self):
         self.root.fixedRate = self._firstSpot()
@@ -98,14 +144,14 @@ class RiskFreeTree(BaseBinomialTree):
         return  [node.rate() for node in nodesByLevel if node.hasChilds()]
 
     def treeSize(self):
-        return len(self.zeroCouponRates)+1
+        return self.modelInput.periods + 1
 
     def _firstSpot(self):
-        return self.zeroCouponRates[0]
+        return self.modelInput.zeroCouponRates[0]
 
     def targetValues(self):
         #GF TODO Assuming deltatime is 1; to fix
-        return [np.exp(-(i + 1) * self.zeroCouponRates[i])*self.faceValue for i in range(0, len(self.zeroCouponRates))]
+        return [np.exp(-(i + 1) * self.modelInput.zeroCouponRates[i])*self.modelInput.faceValue for i in range(0, len(self.modelInput.zeroCouponRates))]
 
     def _solveTree(self, targetValues ):
         nodes = deque(self.nodesByLevels(self.root))
@@ -122,9 +168,10 @@ class RiskFreeTree(BaseBinomialTree):
     def _buildLevelNodes(self, currentLevel, totalSize, nextLevelNodes=None):
         #GF TODO Refactor code
         if currentLevel == totalSize:
-            newNodes = [TerminateNode(terminateValue= self.faceValue) for i in range(totalSize)]
+            newNodes = [TerminateNode(terminateValue= self.modelInput.faceValue) for i in range(totalSize)]
         elif currentLevel>1:
-            newNodes = [LowestRatePriceNode(terminateValue=self.faceValue, fixedRate=1.5)] + [RatePriceNode(terminateValue=self.faceValue, deltaTime=self.deltaTime,volatility=self.volatility) for i in range(currentLevel-1)]
+            newNodes = [LowestRatePriceNode(terminateValue=self.modelInput.faceValue, fixedRate=1.5)] + [RatePriceNode(terminateValue=self.modelInput.faceValue,
+                                                                                                                       deltaTime=self.modelInput.deltaTime,volatility=self.modelInput.volatility) for i in range(currentLevel-1)]
             for i in reversed(range(len(newNodes))):
                 currentNode = newNodes[i]
                 currentNode.up  = nextLevelNodes[i+1]
@@ -134,19 +181,10 @@ class RiskFreeTree(BaseBinomialTree):
                 if i>0:
                     currentNode.below = newNodes[i-1]
         else:
-            rootNode = RootTreeNode(upperNode=nextLevelNodes[1], lowerNode=nextLevelNodes[0], terminateValue=self.faceValue)
+            rootNode = RootTreeNode(upperNode=nextLevelNodes[1], lowerNode=nextLevelNodes[0],
+                                    terminateValue=self.modelInput.faceValue)
             rootNode.up.parent = rootNode
             rootNode.low.parent = rootNode
             newNodes=[rootNode]
 
         return newNodes
-
-def testBackwardsInduction():
-    zeroCouponRates = [0.05969, 0.06209, 0.06373, 0.06455, 0.06504, 0.06554]
-    volatility = 0.1
-    deltaTime = 1.0
-    faceValue = 1.0
-
-    riskFreeTree = RiskFreeTree( zeroCouponRates, volatility, deltaTime, faceValue)
-    riskFreeTree.solve()
-    print( riskFreeTree.ratesByLevel() )

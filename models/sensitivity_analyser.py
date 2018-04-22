@@ -5,15 +5,42 @@ class SensitivityAnalyser:
         self.objectToChange = objectToChange
         self.actionToExecute = actionToExecute
 
-    def analyzeValues(self, dependentValues, attributeName):
-        if not hasattr( self.objectToChange, attributeName):
-            raise Exception('Object {} has no attribute {}'.format( self.objectToChange, attributeName))
+    def analyzeValues(self, dependentValues, attributeFormula):
+        '''
+        :param dependentValues: Values used to compute result
+        :param attributeFormula: Supports '.' for attribute concatenation.
+                                 Supports '&' for setting more than 1 attribute
+                                 Example: 'obj1.att1&obj2.obj3.att3'
+        :return: values calculated from dependent values by executing actionToExecute
+        '''
 
         def mapFunc( aValue ):
-                setattr( self.objectToChange, attributeName, aValue)
-                return self.actionToExecute()
+            self._setValue( attributeFormula, aValue)
+            return self.actionToExecute()
 
         return list(map(mapFunc, dependentValues))
+
+    def _setValue(self, attributeFormula, aValue):
+        def _setValueFunc(attributeFormula, aValue):
+            attributes = attributeFormula.split('.')
+            theObjectToChange = self.objectToChange
+            i = 0
+            while(i<len(attributes)-1):
+                self._raiseExceptionIfHasNoAttr(theObjectToChange, attributes[i])
+                theObjectToChange = getattr(theObjectToChange,attributes[i])
+                i+=1
+
+            self._raiseExceptionIfHasNoAttr(theObjectToChange, attributes[i])
+            setattr(theObjectToChange, attributes[i], aValue)
+
+        for attributeToSet in attributeFormula.split('&'):
+            _setValueFunc( attributeToSet, aValue)
+
+    def _raiseExceptionIfHasNoAttr(self, obj, attributeName):
+        if not hasattr(obj, attributeName):
+            raise Exception('{} has no attr {}'.format(obj, attributeName))
+
+
 
 class ThreadData:
     def __init__(self, id, data, result=None):

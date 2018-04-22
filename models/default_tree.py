@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.optimize import fsolve
 from models.risk_free_tree import RiskFreeTree
-from models.tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree
+from models.tree_base import Node, TerminateNode, NodeRoleFactory, BaseBinomialTree, DiscreteModelInput
 
 
 class DefaultNode(Node):
@@ -92,18 +92,62 @@ class LambdaDefaultProb:
     def isSolved(self):
         return self.solved
 
-class DefaultTree(BaseBinomialTree):
-    #Jarrow and Turnbull default risk model
+class DefaultTreeModelInput(DiscreteModelInput):
+    def __init__(self, freeRiskModelInput, riskyZeroCoupons, recovery, deltaTime, time, rateMovement=0.0):
+        super().__init__(deltaTime, time)
+        self._freeRiskModelInput = freeRiskModelInput
+        self._riskyZeroCoupons = riskyZeroCoupons
+        self._recovery = recovery
+        self._rateMovement = rateMovement
 
-    def __init__(self, zeroCouponRates, volatility, deltaTime, faceValue, riskyZeroCoupons, recovery, freeRiskRateTree=None):
+    @staticmethod
+    def makeModelInput(freeRiskModelInput, riskyZeroCoupons, recovery, deltaTime, time, rateMovement=0.0):
+        return DefaultTreeModelInput(freeRiskModelInput, riskyZeroCoupons, recovery, deltaTime, time, rateMovement=rateMovement)
+
+    def clone(self):
+        return DefaultTreeModelInput.makeModelInput(self.freeRiskModelInput.clone(), self.riskyZeroCoupons,
+                                                    self.recovery, self.deltaTime, self.time, rateMovement=self._rateMovement)
+
+    @property
+    def freeRiskModelInput(self):
+        return self._freeRiskModelInput
+
+    @freeRiskModelInput.setter
+    def freeRiskModelInput(self, value):
+        self._freeRiskModelInput = value
+
+    @property
+    def riskyZeroCoupons(self):
+        rateMov = self.rateMovement/10000.0
+        return [rate+rateMov for rate in self._riskyZeroCoupons]
+
+    @riskyZeroCoupons.setter
+    def riskyZeroCoupons(self, value):
+        self._riskyZeroCoupons = value
+
+    @property
+    def recovery(self):
+        return self._recovery
+
+    @recovery.setter
+    def recovery(self, value):
+        self._recovery = value
+
+    @property
+    def rateMovement (self):
+        return self._rateMovement
+
+    @rateMovement.setter
+    def rateMovement (self, value):
+        self._rateMovement = value
+
+class DefaultTree(BaseBinomialTree):
+    # Jarrow and Turnbull default risk model
+
+    def __init__(self, modelInput ):
         super().__init__()
-        self.zeroCouponRates  = zeroCouponRates
-        self.volatility       = volatility
-        self.deltaTime        = deltaTime
-        self.faceValue        = faceValue
-        self.riskyZeroCoupons = riskyZeroCoupons
-        self.recovery         = recovery
-        self.freeRiskRateTree = RiskFreeTree( zeroCouponRates, volatility, deltaTime, faceValue ) or freeRiskRateTree
+        self.modelInput = modelInput
+        self.freeRiskRateTree = RiskFreeTree( self.modelInput.freeRiskModelInput )
 
     def _preBuildTree(self):
         self.freeRiskRateTree.solve()
@@ -130,19 +174,19 @@ class DefaultTree(BaseBinomialTree):
 
     def targetValues(self):
         #GF TODO Assuming deltatime is 1; to fix
-        return [np.exp(-(i + 1) * self.riskyZeroCoupons[i])*self.faceValue for i in range(0, len(self.riskyZeroCoupons))]
+        return [np.exp(-(i + 1) * self.modelInput.riskyZeroCoupons[i])*self.modelInput.freeRiskModelInput.faceValue for i in range(0, len(self.modelInput.riskyZeroCoupons))]
 
     def treeSize(self):
-        return len(self.zeroCouponRates)+1
+        return self.modelInput.periods + 1
 
     def _buildLevelNodes(self, currentLevel, totalSize, nextLevelNodes=None):
         #GF TODO Refactor code
         if currentLevel == totalSize:
-            newNodes = [TerminateNode(terminateValue= self.faceValue) for i in range(totalSize)]
+            newNodes = [TerminateNode(terminateValue= self.modelInput.freeRiskModelInput.faceValue) for i in range(totalSize)]
         elif currentLevel>1:
             lambdaDefault = LambdaDefaultProb()
             rates    = self.freeRiskRateTree.ratesOfLevel(currentLevel)
-            newNodes = [DefaultNodeIntermediate(terminateValue=self.faceValue, deltaTime=self.deltaTime, recovery=self.recovery) for i in range(currentLevel)]
+            newNodes = [DefaultNodeIntermediate(terminateValue=self.modelInput.freeRiskModelInput.faceValue, deltaTime=self.modelInput.deltaTime, recovery=self.modelInput.recovery) for i in range(currentLevel)]
             for i in reversed(range(len(newNodes))):
                 currentNode                 = newNodes[i]
                 currentNode.up              = nextLevelNodes[i+1]
@@ -153,24 +197,12 @@ class DefaultTree(BaseBinomialTree):
                 currentNode.lambdaDefault   = lambdaDefault
         else:
             rates = self.freeRiskRateTree.ratesOfLevel(1)[::-1]
-            rootNode                  = RootDefaultNode(upperNode=nextLevelNodes[1], lowerNode=nextLevelNodes[0], terminateValue=self.faceValue, deltaTime=self.deltaTime, recovery=self.recovery)
+            rootNode                  = RootDefaultNode(upperNode=nextLevelNodes[1], lowerNode=nextLevelNodes[0], terminateValue=self.modelInput.freeRiskModelInput.faceValue , deltaTime=self.modelInput.deltaTime, recovery=self.modelInput.recovery)
             rootNode.up.parent        = rootNode
             rootNode.low.parent       = rootNode
             rootNode.discountRate     = rates[0]
             rootNode.lambdaDefault    = LambdaDefaultProb()
-            rootNode.riskyZeroCoupons = self.riskyZeroCoupons
+            rootNode.riskyZeroCoupons = self.modelInput.riskyZeroCoupons
             newNodes=[rootNode]
 
         return newNodes
-
-def testBackwardsInduction():
-    zeroCouponRates = [0.05969, 0.06209, 0.06373, 0.06455, 0.06504, 0.06554]
-    volatility = 0.1
-    deltaTime = 1.0
-    faceValue = 1.0
-    riskyZeroCoupons = [0.0611, 0.0646, 0.0663, 0.0678, 0.0683, 0.06894]
-    recovery = 0.32
-
-    defaultTree = DefaultTree( zeroCouponRates, volatility, deltaTime, faceValue, riskyZeroCoupons, recovery)
-    defaultTree.solve()
-    print( defaultTree.defaultProbabilities() )

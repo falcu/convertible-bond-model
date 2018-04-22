@@ -1,4 +1,7 @@
 from abc import ABC, abstractmethod
+from models.risk_free_tree import RiskFreeModelInput
+from models.default_tree import DefaultTreeModelInput
+from models.stock_tree import StockTreeModelInput
 from models.convertible_bond_tree import FeatureSchedule, ConvertibleBondModelInput, ConvertibleBondTree\
                                         , ConvertibleBondType as BondType
 from models.sensitivity_analyser import ConvertibleBondSensitivityAnalyzer, Plotter
@@ -120,6 +123,10 @@ class OptionSelectionViewModel(ViewModel):
     def onOptionSelected(self):
         self._selectedOption = self.optionsProvider.currentText()
 
+    @property
+    def selectedOption(self):
+        return self._selectedOption
+
 class ConvertibleBondViewModel(ViewModel):
     def __init__(self, timeViewModel=None, riskFreeViewModel=None, irVolatilityViewModel=None, deltaTimeViewModel=None,
                  faceValueViewModel=None, riskyZeroCouponsViewModel=None, recoveryViewModel=None,
@@ -150,14 +157,14 @@ class ConvertibleBondViewModel(ViewModel):
 
     def update(self, aValue):
         self.timeViewModel.update( aValue.time )
-        self.riskFreeViewModel.update( aValue.zeroCouponRates )
-        self.irVolatilityViewModel.update( aValue.irVolatility )
+        self.riskFreeViewModel.update( aValue.riskFreeModelInput.zeroCouponRates )
+        self.irVolatilityViewModel.update( aValue.riskFreeModelInput.volatility )
         self.deltaTimeViewModel.update( aValue.deltaTime )
-        self.faceValueViewModel.update( aValue.faceValue )
-        self.riskyZeroCouponsViewModel.update( aValue.riskyZeroCoupons )
-        self.recoveryViewModel.update( aValue.recovery )
-        self.initialStockPriceViewModel.update( aValue.initialStockPrice )
-        self.stockVolatilityViewModel.update( aValue.stockVolatility )
+        self.faceValueViewModel.update( aValue.riskFreeModelInput.faceValue )
+        self.riskyZeroCouponsViewModel.update( aValue.defaultTreeModelInput.riskyZeroCoupons )
+        self.recoveryViewModel.update( aValue.defaultTreeModelInput.recovery )
+        self.initialStockPriceViewModel.update( aValue.stockTreeModelInput.initialStockPrice )
+        self.stockVolatilityViewModel.update( aValue.stockTreeModelInput.volatility )
         self.irStockCorrelationViewModel.update( aValue.irStockCorrelation )
         self.conversionFactorViewModel.update( aValue.conversionFactor )
         self.featureScheduleViewModel.update( aValue.featureSchedule )
@@ -178,8 +185,12 @@ class ConvertibleBondViewModel(ViewModel):
         featureSchedule     = self.featureScheduleViewModel.getInput()
         bondType            = self.bondTypeViewModel.getInput()
 
-        return ConvertibleBondModelInput( zeroCouponRates, irVolatility, deltaTime, faceValue, riskyZeroCoupons, recovery,
-                 initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time,
+        riskFreeInput = RiskFreeModelInput.makeModelInput(zeroCouponRates, irVolatility, faceValue, deltaTime, time)
+        defaultModelInput = DefaultTreeModelInput.makeModelInput(riskFreeInput, riskyZeroCoupons, recovery, deltaTime, time)
+        stockModelInput = StockTreeModelInput.makeModelInput(initialStockPrice, stockVolatility, deltaTime, time)
+
+        return ConvertibleBondModelInput( riskFreeInput, defaultModelInput, stockModelInput,
+                                          irStockCorrelation, conversionFactor, featureSchedule, deltaTime, time,
                                           bondType=bondType)
 
     def onPriceBondClicked(self):
@@ -202,7 +213,7 @@ class SensitivityAnalyzerViewModel(ViewModel):
     def __init__(self, convertibleBondViewModel, optionsViewModel=None, fromViewModel=None,
                  toViewModel=None, numberOfPointsViewModel=None, includeConversionValueViewModel=None,newGraphViewModel=None):
         self.convertibleBondViewModel = convertibleBondViewModel
-        self.optionsViewModel = optionsViewModel or OptionSelectionViewModel()
+        self.optionsViewModel = optionsViewModel or OptionSelectionViewModel( convertFrom=Converters.niceNameToAttributeFormula, convertTo=Converters.attributeFormulaToNiceName)
         self.fromViewModel = fromViewModel or TextViewModel()
         self.toViewModel = toViewModel or TextViewModel()
         self.numberOfPointsViewModel = numberOfPointsViewModel or TextViewModel( convertFrom=Converters.strToInt )
@@ -216,14 +227,15 @@ class SensitivityAnalyzerViewModel(ViewModel):
         model = self.convertibleBondViewModel.model.clone()
         bondType = Converters.bondTypeToStr( model.modelInput.bondType )
         analyzer = ConvertibleBondSensitivityAnalyzer( model )
-        selectedAtribute = data['selected_option']
+        selectedAttribute = data['selected_option']
+        selectionNiceName = self.optionsViewModel.selectedOption
         dependentValues = np.linspace(data['from'], data['to'], data['points'])
-        independentValues = analyzer.analyzeBondPrice(selectedAtribute, dependentValues)
+        independentValues = analyzer.analyzeBondPrice(selectedAttribute, dependentValues)
         dataToPlot = [{'x':dependentValues, 'y':independentValues,
-                           'label':'Bond {}({})'.format(bondType, selectedAtribute)}]
+                           'label':'Bond {}({})'.format(bondType, selectionNiceName)}]
 
         if self._includeConversionValue():
-            independentValues = analyzer.analyzeBondConversionValue(selectedAtribute, dependentValues)
+            independentValues = analyzer.analyzeBondConversionValue(selectedAttribute, dependentValues)
             dataToPlot.append({'x':dependentValues, 'y':independentValues,
                            'label':'Conversion Value'})
 
@@ -323,3 +335,25 @@ class Converters:
         conversion = {BondType.CLASSIC:'Classic', BondType.FORCED:'Forced',
                       BondType.COCO:'Coco', BondType.NO_CONVERSION:'No Conversion'}
         return conversion[value]
+
+    @staticmethod
+    def _formulaToNiceNameDict():
+        return {'stockTreeModelInput.initialStockPrice':'Stock Price',
+                      'riskFreeModelInput.volatility':'IR Volatility',
+                      'stockTreeModelInput.volatility':'Stock Volatility',
+                      'defaultTreeModelInput.recovery':'Recovery',
+                      'irStockCorrelation':'IR-Stock Corr',
+                      'conversionFactor':'Convesion Factor',
+                      'riskFreeModelInput.rateMovement&defaultTreeModelInput.rateMovement':'Parallel Rate Mov'}
+    @staticmethod
+    def attributeFormulaToNiceName(value):
+        conversionDict = Converters._formulaToNiceNameDict()
+        return [conversionDict.get(aValue,aValue) for aValue in value]
+
+    @staticmethod
+    def niceNameToAttributeFormula(value):
+        return Converters._invertMapping(Converters._formulaToNiceNameDict()).get(value,value)
+
+    @staticmethod
+    def _invertMapping( dictMap ):
+        return {v: k for k, v in dictMap.items()}

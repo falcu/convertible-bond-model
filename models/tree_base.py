@@ -112,6 +112,31 @@ class BaseTree(ABC):
     def targetValues(self):
             pass
 
+class DiscreteModelInput:
+    def __init__(self, deltaTime, time):
+        self._deltaTime = deltaTime
+        self._time = time
+
+    @property
+    def deltaTime(self):
+        return self._deltaTime
+
+    @deltaTime.setter
+    def deltaTime(self, value):
+        self._deltaTime = value
+
+    @property
+    def time(self):
+        return self._time
+
+    @time.setter
+    def time(self, value):
+        self._time = value
+
+    @property
+    def periods(self):
+        return int(self.time / self.deltaTime )
+
 class BaseBinomialTree(BaseTree):
     def __init__(self):
         super().__init__()

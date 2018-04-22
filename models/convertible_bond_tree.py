@@ -1,7 +1,7 @@
 from models.risk_free_tree import RiskFreeTree
 from models.default_tree import DefaultTree
 from models.stock_tree import  StockTree
-from models.tree_base import BaseTree, Node
+from models.tree_base import BaseTree, Node, DiscreteModelInput
 import numpy as np
 from collections import deque
 from copy import copy
@@ -29,7 +29,7 @@ class BaseNode(Node):
         return self.modelInput.conversionFactor * self.stockPrice()
 
     def bondFaceValue(self):
-        return self.modelInput.faceValue
+        return self.modelInput.riskFreeModelInput.faceValue
 
     def valueProviderFactory(self):
         return NullValueProviderFactory( self )
@@ -176,7 +176,7 @@ class DefaultNodeValueClassicProvider(NodeValueProvider):
         super().__init__( node )
 
     def value(self):
-        return self.node.modelInput.faceValue * self.node.modelInput.recovery
+        return self.node.modelInput.riskFreeModelInput.faceValue * self.node.modelInput.defaultTreeModelInput.recovery
 
 class DefaultNodeValueFactory(NodeValueProviderFactory):
     def __init__(self, node):
@@ -202,7 +202,7 @@ class IntermediateNode(BaseNode):
         return self.defaultProbability
 
     def _uFactor(self):
-        return np.exp(self.modelInput.stockVolatility* np.sqrt(self.modelInput.deltaTime))
+        return np.exp(self.modelInput.stockTreeModelInput.volatility* np.sqrt(self.modelInput.deltaTime))
 
     def _dFactor(self):
         return 1.0/self._uFactor()
@@ -300,25 +300,31 @@ class ConvertibleBondType(Enum):
     COCO            = auto()
     NO_CONVERSION   = auto()
 
-class ConvertibleBondModelInput:
-    def __init__(self, zeroCouponRates, irVolatility, deltaTime, faceValue, riskyZeroCoupons, recovery,
-                 initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time,
-                 irRateMovement=0.0, bondType=ConvertibleBondType.CLASSIC):
-        self.zeroCouponRates = zeroCouponRates
-        self.irVolatility = irVolatility
-        self.deltaTime = deltaTime
-        self.faceValue = faceValue
-        self.riskyZeroCoupons = riskyZeroCoupons
-        self.recovery = recovery
-        self.initialStockPrice = initialStockPrice
-        self.stockVolatility = stockVolatility
+class ConvertibleBondModelInput(DiscreteModelInput):
+    # Chambers and Lu Convertible Bond model implementation
+
+    def __init__(self, riskFreeModelInput, defaultTreeModelInput, stockTreeModelInput, irStockCorrelation,
+                 conversionFactor, featureSchedule, deltaTime, time, bondType=ConvertibleBondType.CLASSIC):
+        super().__init__( deltaTime, time)
+        self.riskFreeModelInput = riskFreeModelInput
+        self.defaultTreeModelInput = defaultTreeModelInput
+        self.stockTreeModelInput = stockTreeModelInput
         self.irStockCorrelation = irStockCorrelation
         self.conversionFactor = conversionFactor
         self.featureSchedule = featureSchedule
-        self.time = time
-        self.treeLevels = int(time+1/deltaTime)
-        self.irRateMovement = irRateMovement
         self.bondType = bondType
+
+    @staticmethod
+    def makeModelInput(riskFreeModelInput, defaultTreeModelInput, stockTreeModelInput, irStockCorrelation,
+                 conversionFactor, featureSchedule, deltaTime, time, bondType=ConvertibleBondType.CLASSIC):
+        return ConvertibleBondModelInput(riskFreeModelInput, defaultTreeModelInput, stockTreeModelInput, irStockCorrelation,
+                 conversionFactor, featureSchedule, deltaTime, time, bondType=bondType)
+
+    def clone(self):
+        return ConvertibleBondModelInput.makeModelInput(self.riskFreeModelInput.clone(), self.defaultTreeModelInput.clone(),
+                                                        self.stockTreeModelInput.clone(), self.irStockCorrelation,
+                                                        self.conversionFactor, self.featureSchedule, self.deltaTime,
+                                                        self.time, bondType=self.bondType)
 
 class ConvertibleBondTree(BaseTree):
     def __init__(self, modelInput):
@@ -340,21 +346,21 @@ class ConvertibleBondTree(BaseTree):
         return ConvertibleBondTree( modelInputClone )
 
     def impliedVolatility(self, marketPrice):
-        modelInputClone = copy(self.modelInput)
+        modelInputClone = self.modelInput.clone()
         newModel = ConvertibleBondTree( modelInputClone )
 
         def solver_fuc(impliedVolatility):
-            modelInputClone.stockVolatility = impliedVolatility[0]
+            modelInputClone.stockTreeModelInput.volatility = impliedVolatility[0]
             result = marketPrice - newModel.priceBond()
-            result = result if modelInputClone.stockVolatility>=0 else 1000.0
+            result = result if modelInputClone.stockTreeModelInput.volatility >=0 else 1000.0
             return result
 
         fsolve(solver_fuc, 1.5, xtol=1.5e-10, maxfev=1000000)
 
-        return modelInputClone.stockVolatility
+        return modelInputClone.stockTreeModelInput.volatility
 
     def treeSize(self):
-        return self.modelInput.treeLevels
+        return self.modelInput.periods + 1
 
     def _solveTree(self, targetValues ):
         return self.root.value()
@@ -369,14 +375,9 @@ class ConvertibleBondTree(BaseTree):
         self.stockTree.solve()
 
     def _buildHelperTrees(self):
-        rateMovement = self.modelInput.irRateMovement/10000 # from basic points to number
-        zeroCouponRates = [rate+rateMovement for rate in self.modelInput.zeroCouponRates]
-        riskyZeroCoupons = [rate+rateMovement for rate in self.modelInput.riskyZeroCoupons]
-        self.freeRiskIRTree = RiskFreeTree( zeroCouponRates, self.modelInput.irVolatility,self.modelInput.deltaTime,
-                                            self.modelInput.faceValue)
-        self.defaultTree = DefaultTree( zeroCouponRates, self.modelInput.irVolatility, self.modelInput.deltaTime,
-                                        self.modelInput.faceValue, riskyZeroCoupons, self.modelInput.recovery, self.freeRiskIRTree )
-        self.stockTree = StockTree(self.modelInput.treeLevels, self.modelInput.initialStockPrice, self.modelInput.stockVolatility, self.modelInput.deltaTime)
+        self.freeRiskIRTree = RiskFreeTree( self.modelInput.riskFreeModelInput)
+        self.defaultTree = DefaultTree( self.modelInput.defaultTreeModelInput)
+        self.stockTree = StockTree(self.modelInput.stockTreeModelInput)
 
     def _terminateNodesCount(self):
         #In a two-factor tree with recombination there are (n+1)^2 nodes per level
@@ -476,25 +477,3 @@ class ConvertibleBondTree(BaseTree):
             newNodes=[self._buildRootNode(nextLevelNodes)]
 
         return newNodes
-
-
-def testConvertibleBond(correlation=-0.1, stockPrice=15.006, conversionFactor=5.07524):
-    zeroCouponRates = [0.05969, 0.06209, 0.06373, 0.06455, 0.06504, 0.06554]
-    irVolatility = 0.1
-    deltaTime = 1.0
-    faceValue = 100.0
-    riskyZeroCoupons = [0.0611, 0.0646, 0.0663, 0.0678, 0.0683, 0.06894]
-    recovery = 0.32
-    initialStockPrice = stockPrice
-    stockVolatility = 0.353836
-    irStockCorrelation = correlation
-    conversionFactor = conversionFactor
-    time = 6
-    featureSchedule = FeatureSchedule()
-    featureSchedule.addFeatures({3:Feature(callValue=94.205), 4:Feature(callValue=96.098), 5:Feature(callValue=98.030)})
-
-    modelInput = ConvertibleBondModelInput(zeroCouponRates, irVolatility, deltaTime, faceValue, riskyZeroCoupons, recovery,
-                 initialStockPrice, stockVolatility, irStockCorrelation, conversionFactor, featureSchedule, time)
-
-    model = ConvertibleBondTree( modelInput )
-    return modelInput,model

@@ -1,7 +1,7 @@
 import numpy as np
 from models.tree_base import BaseBinomialTree
-from models.tree_base import Node
-
+from models.tree_base import Node, DiscreteModelInput
+from copy import copy
 
 class RootStockNode(Node):
 
@@ -81,14 +81,40 @@ class TerminateLowerStockNode(TerminateStockNode):
     def _discountSign(self):
         return -1.0
 
+class StockTreeModelInput(DiscreteModelInput):
+    def __init__(self, initialStockPrice, volatility, deltaTime, time):
+        super().__init__(deltaTime, time)
+        self._initialStockPrice = initialStockPrice
+        self._volatility = volatility
+
+    @staticmethod
+    def makeModelInput(initialStockPrice, volatility, deltaTime, time):
+        return StockTreeModelInput(initialStockPrice, volatility, deltaTime, time)
+
+    def clone(self):
+        return copy(self)
+
+    @property
+    def initialStockPrice(self):
+        return self._initialStockPrice
+
+    @initialStockPrice.setter
+    def initialStockPrice(self, value):
+        self._initialStockPrice = value
+
+    @property
+    def volatility(self):
+        return self._volatility
+
+    @volatility.setter
+    def volatility(self, value):
+        self._volatility = value
+
 class StockTree(BaseBinomialTree):
 
-    def __init__(self, treeLevels, initialStockPrice, volatility, deltaTime):
+    def __init__(self, modelInput):
         super().__init__()
-        self.treeLevels = treeLevels
-        self.initialStockPrice = initialStockPrice
-        self.volatility = volatility
-        self.deltaTime = deltaTime
+        self.modelInput = modelInput
 
     def stockPricesByLevel(self):
         nodes = self.nodesByLevels( self.root)
@@ -104,14 +130,14 @@ class StockTree(BaseBinomialTree):
         pass
 
     def treeSize(self):
-        return self.treeLevels
+        return self.modelInput.periods + 1
 
     def _buildLevelNodes(self, currentLevel, totalSize, nextLevelNodes=None):
         #GF TODO Refactor code
         if currentLevel == totalSize:
-            newNodes = [TerminateLowerStockNode(volatility=self.volatility, deltaTime=self.deltaTime)]+[TerminateUpperStockNode(volatility=self.volatility, deltaTime=self.deltaTime) for i in range(totalSize-1)]
+            newNodes = [TerminateLowerStockNode(volatility=self.modelInput.volatility, deltaTime=self.modelInput.deltaTime)]+[TerminateUpperStockNode(volatility=self.modelInput.volatility, deltaTime=self.modelInput.deltaTime) for i in range(totalSize-1)]
         elif currentLevel>1:
-            newNodes = [LowerIntermediateStockNode(volatility=self.volatility, deltaTime=self.deltaTime)] + [UpperIntermediateStockNode(volatility=self.volatility, deltaTime=self.deltaTime) for i in range(currentLevel-1)]
+            newNodes = [LowerIntermediateStockNode(volatility=self.modelInput.volatility, deltaTime=self.modelInput.deltaTime)] + [UpperIntermediateStockNode(volatility=self.modelInput.volatility, deltaTime=self.modelInput.deltaTime) for i in range(currentLevel-1)]
             for i in reversed(range(len(newNodes))):
                 currentNode = newNodes[i]
                 currentNode.up  = nextLevelNodes[i+1]
@@ -122,7 +148,7 @@ class StockTree(BaseBinomialTree):
                 else:
                     currentNode.low.parent = currentNode
         else:
-            rootNode = RootStockNode(initialStockPrice=self.initialStockPrice, upperNode=nextLevelNodes[1], lowerNode=nextLevelNodes[0])
+            rootNode = RootStockNode(initialStockPrice=self.modelInput.initialStockPrice, upperNode=nextLevelNodes[1], lowerNode=nextLevelNodes[0])
             rootNode.up.parent = rootNode
             rootNode.low.parent = rootNode
             newNodes=[rootNode]

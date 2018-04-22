@@ -10,7 +10,7 @@ import PyQt5.QtCore as qtCore
 class App(QMainWindow):
     def __init__(self, convertibleBondViewModel, analyzerViewModel):
         super().__init__()
-        self.title = 'Pricer Bono Convertible'
+        self.title = 'Pricer Bono Convertible - Matematica Financiera'
         self.left = 100
         self.top = 100
         self.width = 300
@@ -184,5 +184,8 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = App(convertibleBondViewModel, analyzerViewModel)
     ex.pricerWidget.updateToChambersInput()
-    analyzerViewModel.update({'options':['initialStockPrice','irVolatility','recovery','stockVolatility','irStockCorrelation','conversionFactor','irRateMovement'], 'from':0.0, 'to':30.0, 'points':10})
+    analyzerViewModel.update({'options':['stockTreeModelInput.initialStockPrice','riskFreeModelInput.volatility',
+                     'defaultTreeModelInput.recovery','stockTreeModelInput.volatility','irStockCorrelation',
+                                         'conversionFactor','riskFreeModelInput.rateMovement&defaultTreeModelInput.rateMovement'],
+                              'from':0.0, 'to':30.0, 'points':10})
     sys.exit(app.exec_())
